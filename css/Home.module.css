@@ -1,8 +1,17 @@
-.container {
-  padding: 0 2rem;
+.nav_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: solid black 1px;
+  height: 70px;
+  margin-bottom: 1rem;
 }
 
 .container .main {
+  border: solid red 1px;
   min-height: 100vh;
   padding: 4rem 0;
   -webkit-box-flex: 1;
@@ -21,9 +30,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 1rem;
 }
 
 .container .footer {
+  border: solid #05CA94 1px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
