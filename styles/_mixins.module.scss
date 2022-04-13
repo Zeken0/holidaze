@@ -1,0 +1,12 @@
+@mixin button_styiling {
+    font-family: $secondary-font;
+    font-weight: 600;
+    border-radius: 1.5rem;
+    font-size: 1.2rem;
+    height: 40px;
+    width: 6.5rem;
+    color: $white-color;
+    background-color: $secondary-color;
+    border: solid $secondary-color 1.5px;
+    cursor: pointer;
+}

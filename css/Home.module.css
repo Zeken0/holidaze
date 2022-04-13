@@ -1,16 +1,133 @@
 .nav_container {
+  z-index: 100;
+  top: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 2rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: solid #e1e1e1 0.1px;
+  height: 70px;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.nav_container .nav_logo {
+  cursor: pointer;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.nav_container .nav_actions {
+  font-family: "jost", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 1.2rem;
+          column-gap: 1.2rem;
+  list-style: none;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.nav_container .nav_actions li {
+  cursor: pointer;
+}
+
+.nav_container .nav_actions li .nav_actions_styling {
+  color: #ff5d5d;
+}
+
+.nav_container .nav_actions li .nav_actions_active {
+  color: #05CA94;
+}
+
+.nav_container .nav_actions li:hover .nav_actions_styling {
+  color: #05CA94;
+}
+
+.nav_container .nav_actions .nav_actions_button {
+  font-family: "jost", sans-serif;
+  font-weight: 600;
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
+  height: 40px;
+  width: 6.5rem;
+  color: #ffff;
+  background-color: #ff5d5d;
+  border: solid #ff5d5d 1.5px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.nav_container .nav_actions .nav_actions_button:hover {
+  font-family: "jost", sans-serif;
+  font-weight: 600;
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
+  height: 40px;
+  width: 6.5rem;
+  color: #ffff;
+  background-color: #ff5d5d;
+  border: solid #ff5d5d 1.5px;
+  cursor: pointer;
+  background-color: #05CA94;
+  border: solid #05CA94 1.5px;
+}
+
+.nav_container .nav_actions .nav_burger {
+  display: none;
+  z-index: 100;
+}
+
+.nav_container .nav_drawer {
+  z-index: 100;
+  display: none;
+}
+
+.footer_container {
+  height: 100px;
+  margin-top: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border: solid black 1px;
-  height: 70px;
-  margin-bottom: 1rem;
+  border-top: 1px solid #eaeaea;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer_container a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .container .main {
+  z-index: 10;
   border: solid red 1px;
   min-height: 100vh;
   padding: 4rem 0;
@@ -31,38 +148,5 @@
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 1rem;
-}
-
-.container .footer {
-  border: solid #05CA94 1px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.container .footer a {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
 }
 /*# sourceMappingURL=Home.module.css.map */
