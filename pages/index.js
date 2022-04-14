@@ -1,12 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import SearchBar from "../components/SearchBar";
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className={styles.home_container}>
       <Head>
         <title>Holidaze | Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +15,11 @@ export default function Home() {
       </Head>
       <NavBar />
 
-      <main className={styles.main}></main>
+      <main className={styles.home_main}>
+        <div className={styles.home_herobanner}>
+          <SearchBar placeholder="Enter a Book Name..." data={""} />
+        </div>
+      </main>
 
       <Footer />
     </div>

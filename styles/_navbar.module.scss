@@ -1,9 +1,7 @@
 .nav_container {
     z-index: $base-index;
-    top: 0;
-    position: sticky;
     display:  flex;
-    padding: 0 4rem;
+    padding: 0 4.2rem;
     justify-content: space-between;
     align-items: center;
     border-bottom: solid $tertiary-color 0.1px;

@@ -6,8 +6,7 @@ import styles from "../styles/Home.module.scss";
 
 function Navbar() {
   const [opened, setOpened] = useState(false);
-  const [poppUp, setPoppUp] = useState(false);
-  const title = opened ? "Close navigation" : "Open navigation";
+
   return (
     <div className={styles.nav_container}>
       <div className={styles.nav_logo}>
@@ -34,7 +33,6 @@ function Navbar() {
             </a>
           </Link>
         </li>
-
         <li>
           <Link href="/contact">
             <a>
@@ -42,31 +40,16 @@ function Navbar() {
             </a>
           </Link>
         </li>
-        <button
-          className={styles.nav_actions_button}
-          onClick={() => setPoppUp(true)}
-        >
-          Sign in
-        </button>
+        <button className={styles.nav_actions_button}>Sign in</button>
       </ul>
-
-      <Modal
-        poppUp={poppUp}
-        onClose={() => setPoppUp(false)}
-        title="Introduce yourself!"
-      >
-        {/* Modal content */}
-      </Modal>
 
       <div className={styles.nav_burger}>
         <Burger
           size={20}
           opened={opened}
           onClick={() => setOpened((o) => !o)}
-          title={title}
         />
       </div>
-
       <div className={styles.nav_drawer}>
         <Drawer
           position="left"
@@ -105,10 +88,6 @@ function Navbar() {
             </ul>
           }
         </Drawer>
-
-        <Group position="center">
-          <Button onClick={() => setOpened(true)}>Open Drawer</Button>
-        </Group>
       </div>
     </div>
   );
