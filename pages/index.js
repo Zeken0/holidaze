@@ -17,7 +17,7 @@ export default function Home() {
 
       <main className={styles.home_main}>
         <div className={styles.home_herobanner}>
-          <SearchBar placeholder="Enter a Book Name..." data={""} />
+          <SearchBar />
         </div>
       </main>
 

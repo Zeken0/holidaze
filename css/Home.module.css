@@ -123,6 +123,148 @@
           flex-grow: 1;
 }
 
+.searchBarContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 34em;
+  height: 3.8em;
+  background-color: #fff;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 2px 12px 3px rgba(0, 0, 0, 0.14);
+          box-shadow: 0px 2px 12px 3px rgba(0, 0, 0, 0.14);
+}
+
+.searchBarContainer .searchInputContainer {
+  width: 100%;
+  min-height: 4em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  padding: 2px 15px;
+}
+
+.searchBarContainer .searchInputContainer .searchInput {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  font-size: 21px;
+  color: #12112e;
+  font-weight: 500;
+  border-radius: 6px;
+  background-color: transparent;
+}
+
+.searchBarContainer .searchInputContainer .searchInput:focus {
+  outline: none;
+}
+
+.searchBarContainer .searchInputContainer .searchInput:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+.searchBarContainer .searchInputContainer .searchInput:focus:-ms-input-placeholder {
+  opacity: 0;
+}
+
+.searchBarContainer .searchInputContainer .searchInput:focus::-ms-input-placeholder {
+  opacity: 0;
+}
+
+.searchBarContainer .searchInputContainer .searchInput:focus::placeholder {
+  opacity: 0;
+}
+
+.searchBarContainer .searchInputContainer .searchInput::-webkit-input-placeholder {
+  color: #bebebe;
+  -webkit-transition: all 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
+}
+
+.searchBarContainer .searchInputContainer .searchInput:-ms-input-placeholder {
+  color: #bebebe;
+  -webkit-transition: all 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
+}
+
+.searchBarContainer .searchInputContainer .searchInput::-ms-input-placeholder {
+  color: #bebebe;
+  -webkit-transition: all 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
+}
+
+.searchBarContainer .searchInputContainer .searchInput::placeholder {
+  color: #bebebe;
+  -webkit-transition: all 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
+}
+
+.searchBarContainer .searchInputContainer .searchIcon {
+  color: #bebebe;
+  font-size: 27px;
+  margin-right: 10px;
+  margin-top: 6px;
+  vertical-align: middle;
+}
+
+.searchBarContainer .searchInputContainer .closeIcon {
+  color: #bebebe;
+  font-size: 27px;
+  margin-right: 10px;
+  margin-top: 6px;
+  vertical-align: middle;
+}
+
+.searchBarContainer .searchInputContainer .closeIcon:hover {
+  color: #dfdfdf;
+}
+
+.searchBarContainer .lineSeparator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 100%;
+  min-height: 2px;
+  background-color: #d8d8d878;
+}
+
+.searchBarContainer .searchContent {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1em;
+  overflow-y: auto;
+}
+
+.searchBarContainer .searchContent .loadingWrapper {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .home_container .home_main {
   z-index: 10;
   border: solid black 1px;
@@ -133,6 +275,15 @@
 }
 
 .home_container .home_main .home_herobanner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-image: url("https://static.tacdn.com/img2/brand/home/homemar2022_dt_trans@2x.webp");
   background-repeat: no-repeat;
   background-size: contain;
