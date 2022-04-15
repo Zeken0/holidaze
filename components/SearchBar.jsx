@@ -42,42 +42,44 @@ function SearchBar(props) {
         }
     },[isClickedOutSide])
 
-  return (
-    <motion.div className={styles.searchBarContainer} 
-        animate={isExpended ? "expanded" : "collapsed"} 
-        variants={containerVariants} 
-        transition={containerTransition} 
-        ref={parentRef}>
-        <div className={styles.searchInputContainer}>
-            <span className={styles.searchIcon}>
-                <IoSearch/>
-            </span>
-            <input className={styles.searchInput} 
-                placeholder="Search for hotels" 
-                onFocus={expandContainer} 
-                ref={inputRef}/>
-            <AnimatePresence>
-                {isExpended && (
-                <motion.span className={styles.closeIcon} 
-                    key="close-icon"
-                    initial={{Opacity: 0}} 
-                    animate={{Opacity: 1}} 
-                    exit={{Opacity: 0}} 
-                    transition={{duration: 0.2}} 
-                    onClick={collapseContainer}>
-                    <IoClose />
-                </motion.span>
-                )}
-            </AnimatePresence>
-        </div>
-        <span className={styles.lineSeparator}></span>
-        <div className={styles.searchContent}>
-            <div className={styles.loadingWrapper}>
-                <MoonLoader/>
+    return (
+        <motion.div className={styles.searchBarContainer} 
+            animate={isExpended ? "expanded" : "collapsed"} 
+            variants={containerVariants} 
+            transition={containerTransition} 
+            ref={parentRef}>
+            <div className={styles.searchInputContainer}>
+                <span className={styles.searchIcon}>
+                    <IoSearch/>
+                </span>
+                <input className={styles.searchInput} 
+                    placeholder="Search for hotels" 
+                    onFocus={expandContainer} 
+                    ref={inputRef}/>
+                <AnimatePresence>
+                    {isExpended && (
+                    <motion.span className={styles.closeIcon} 
+                        key="close-icon"
+                        initial={{Opacity: 0}} 
+                        animate={{Opacity: 1}} 
+                        exit={{Opacity: 0}} 
+                        transition={{duration: 0.2}} 
+                        onClick={collapseContainer}>
+                        <IoClose />
+                    </motion.span>
+                    )}
+                </AnimatePresence>
             </div>
-        </div>
-    </motion.div>
-  )
+            {isExpended && <span className={styles.lineSeparator}></span>}
+            {isExpended && (
+            <div className={styles.searchContent}>
+                <div className={styles.loadingWrapper}>
+                    <MoonLoader loading size={20}/>
+                </div>
+            </div>
+            )}
+        </motion.div>
+    )
 }
 
 export default SearchBar
