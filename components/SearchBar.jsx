@@ -4,6 +4,8 @@ import { IoClose, IoSearch } from "react-icons/io5";
 import {useClickOutside} from "react-click-outside-hook"
 import { AnimatePresence, motion } from "framer-motion";
 import MoonLoader from "react-spinners/MoonLoader";
+import { useDebounce } from "../hooks/debounceHook";
+import axios from "axios";
 
 const containerVariants = {
     expanded: {
@@ -24,6 +26,13 @@ function SearchBar(props) {
     const [isExpended, setExpended] = useState(false)
     const [parentRef, isClickedOutSide] = useClickOutside();
     const inputRef = useRef();
+    const [searchQuery, setSearchQuery] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
+
+    const changeHandler = (e) => {
+        e.preventDefault();
+        setSearchQuery(e.target.value);
+    }
 
     const expandContainer = () => {
         setExpended(true)
@@ -31,6 +40,8 @@ function SearchBar(props) {
 
     const collapseContainer = () => {
         setExpended(false)
+        setSearchQuery("");
+        setIsLoading(false);
         if (inputRef.current) {
             inputRef.current.value = "";
         }
@@ -41,6 +52,32 @@ function SearchBar(props) {
             collapseContainer();
         }
     },[isClickedOutSide])
+
+    const prepareSearchQuery = (query) => {
+        const url = `https://makers-studio.herokuapp.com/Products/${query}`;
+
+        return encodeURI(url);
+    }
+
+    const searchHotels = async () => {
+        if (!searchQuery || searchQuery.trim() === "") 
+            return;
+        setIsLoading(true);
+
+        const URL = prepareSearchQuery(searchQuery);
+
+        const response = await axios.get(URL).catch((err) => {
+            console.log("error:", err); 
+        })
+
+        if (response) {
+            console.log("Response: ", response.data);
+
+            setIsLoading(false)
+        }
+    }
+
+    useDebounce(searchQuery, 500, searchHotels);
 
     return (
         <motion.div className={styles.searchBarContainer} 
@@ -55,7 +92,9 @@ function SearchBar(props) {
                 <input className={styles.searchInput} 
                     placeholder="Search for hotels" 
                     onFocus={expandContainer} 
-                    ref={inputRef}/>
+                    ref={inputRef} 
+                    value={searchQuery} 
+                    onChange={changeHandler}/>
                 <AnimatePresence>
                     {isExpended && (
                     <motion.span className={styles.closeIcon} 
@@ -71,7 +110,7 @@ function SearchBar(props) {
                 </AnimatePresence>
             </div>
             {isExpended && <span className={styles.lineSeparator}></span>}
-            {isExpended && (
+            {isLoading && (
             <div className={styles.searchContent}>
                 <div className={styles.loadingWrapper}>
                     <MoonLoader loading size={20}/>
