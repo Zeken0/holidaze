@@ -2,10 +2,17 @@ import React from "react";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import styles from "../styles/Home.module.scss";
+import {
+  IoAt,
+  IoSunnyOutline,
+  IoLocationOutline,
+  IoCallOutline,
+} from "react-icons/io5";
 
 function contact() {
   return (
-    <div>
+    <div className={styles.contact_container}>
       <Head>
         <title>Holidaze | Contact</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,7 +20,20 @@ function contact() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
-      <div>ede</div>
+      <main className={styles.contact_main}>
+        <div className={styles.contact_main_info}>
+          <h1>Contact us</h1>
+          <h4>Leave your email and we will get back to you within 24 hours</h4>
+          <div className={styles.info_content}>
+            <IoAt />
+            <div className={styles.info_content_item}>
+              <h5>Email</h5>
+              <span>Ask@Holidaze.com</span>
+            </div>
+          </div>
+        </div>
+        <div className={styles.contact_main_login}>a</div>
+      </main>
       <Footer />
     </div>
   );
