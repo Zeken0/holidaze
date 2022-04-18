@@ -8,6 +8,9 @@ import {
   IoSunnyOutline,
   IoLocationOutline,
   IoCallOutline,
+  IoLogoTwitter,
+  IoLogoInstagram,
+  IoLogoYoutube,
 } from "react-icons/io5";
 
 function contact() {
@@ -30,6 +33,32 @@ function contact() {
               <h5>Email</h5>
               <span>Ask@Holidaze.com</span>
             </div>
+          </div>
+          <div className={styles.info_content}>
+            <IoCallOutline />
+            <div className={styles.info_content_item}>
+              <h5>Phone</h5>
+              <span>+47 335 355 35</span>
+            </div>
+          </div>
+          <div className={styles.info_content}>
+            <IoLocationOutline />
+            <div className={styles.info_content_item}>
+              <h5>Address</h5>
+              <span>844 Morris Park avenue</span>
+            </div>
+          </div>
+          <div className={styles.info_content}>
+            <IoSunnyOutline />
+            <div className={styles.info_content_item}>
+              <h5>Working hours</h5>
+              <span>8 a.m. – 11 p.m.</span>
+            </div>
+          </div>
+          <div className={styles.info_content_logos}>
+            <IoLogoTwitter />
+            <IoLogoYoutube />
+            <IoLogoInstagram />
           </div>
         </div>
         <div className={styles.contact_main_login}>a</div>
