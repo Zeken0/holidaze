@@ -20,33 +20,34 @@ function Footer() {
           </Link>
           <p>ewefwefwefwefefwefwefwefwefwefwef</p>
         </div>
-        <div>
+        <div className={styles.footer_list}>
           <ul>
-            <span className={styles.primary_span}>About us</span>
-            <span className={styles.secondary_span}></span>
-            <span className={styles.secondary_span}></span>
-            <span className={styles.secondary_span}></span>
+            <li className={styles.primary_span}>About us</li>
+            <li className={styles.secondary_span}>1</li>
+            <li className={styles.secondary_span}>2</li>
+            <li className={styles.secondary_span}>3</li>
           </ul>
           <ul>
-            <span className={styles.primary_span}>About us</span>
-            <span className={styles.secondary_span}></span>
-            <span className={styles.secondary_span}></span>
-            <span className={styles.secondary_span}></span>
+            <li className={styles.primary_span}>About us</li>
+            <li className={styles.secondary_span}>1</li>
+            <li className={styles.secondary_span}>2</li>
+            <li className={styles.secondary_span}>3</li>
           </ul>
           <ul>
-            <span className={styles.primary_span}>About us</span>
-            <span className={styles.secondary_span}></span>
-            <span className={styles.secondary_span}></span>
-            <span className={styles.secondary_span}></span>
+            <li className={styles.primary_span}>About us</li>
+            <li className={styles.secondary_span}>1</li>
+            <li className={styles.secondary_span}>2</li>
+            <li className={styles.secondary_span}>3</li>
           </ul>
         </div>
       </div>
       <div className={styles.footer_lineSeparator}></div>
       <div className={styles.footer_bottom_content}>
         <div>
-          <p>© 2020 mantine.dev. All rights reserved.</p>
+          <p>This site is for a school project.</p>
+          <p>© 2022 Holidaze.com. All rights reserved.</p>
         </div>
-        <div>
+        <div className={styles.footer_logos}>
           <IoLogoTwitter />
           <IoLogoYoutube />
           <IoLogoInstagram />
