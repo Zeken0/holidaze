@@ -43,12 +43,19 @@
         .nav_actions_button {
             @include button_styiling;
             margin-left: 8px;
+            font-size: 1.2rem;
+            height: 40px;
+            width: 6.5rem;
+            border-radius: 1.5rem;
         }
 
         .nav_actions_button:hover {
             @include button_styiling;
             background-color: $primary-color;
             border: solid $primary-color 1.5px;
+            font-size: 1.2rem;
+            height: 40px;
+            width: 6.5rem;
         }
 
         .nav_burger {

@@ -27,7 +27,7 @@ function Contact() {
       message: "",
     },
     onSubmit: () => {
-      setMessage("Form submitted");
+      setMessage("Message delivered");
       setSubmitted(true);
     },
     validationSchema: yup.object({
@@ -36,7 +36,7 @@ function Contact() {
         .trim()
         .min(2, "Too Short!")
         .max(20, "Too Long!")
-        .required("Full name is required"),
+        .required("Name is required"),
       email: yup
         .string()
         .email("Must be a valid email")
@@ -60,33 +60,37 @@ function Contact() {
       <NavBar />
       <main className={styles.contact_main}>
         <div className={styles.contact_main_info}>
-          <h1>Contact us</h1>
-          <h6>Leave your email and we will get back to you within 24 hours</h6>
+          <div>
+            <h1>Contact us</h1>
+            <h2>
+              Leave your email and we will get back to you within 24 hours
+            </h2>
+          </div>
           <div className={styles.info_content}>
             <IoAt />
             <div className={styles.info_content_item}>
-              <h8>Email</h8>
+              <h3>Email</h3>
               <span>Ask@Holidaze.com</span>
             </div>
           </div>
           <div className={styles.info_content}>
             <IoCallOutline />
             <div className={styles.info_content_item}>
-              <h5>Phone</h5>
+              <h3>Phone</h3>
               <span>+47 335 355 35</span>
             </div>
           </div>
           <div className={styles.info_content}>
             <IoLocationOutline />
             <div className={styles.info_content_item}>
-              <h5>Address</h5>
+              <h3>Address</h3>
               <span>844 Morris Park avenue</span>
             </div>
           </div>
           <div className={styles.info_content}>
             <IoSunnyOutline />
             <div className={styles.info_content_item}>
-              <h5>Working hours</h5>
+              <h3>Working hours</h3>
               <span>8 a.m. – 11 p.m.</span>
             </div>
           </div>
@@ -152,7 +156,7 @@ function Contact() {
             </div>
 
             <button type="submit" className="btn btn-primary">
-              Send
+              Send message
             </button>
           </form>
 
