@@ -1,17 +1,17 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: "Open Sans", sans-serif;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: "Open Sans", sans-serif !important;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
 }
 /*# sourceMappingURL=globals.css.map */

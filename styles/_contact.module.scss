@@ -1,7 +1,7 @@
 .contact_container {
 
     .contact_main {
-        padding: 2rem 3rem;
+        padding: 4.5rem 4.5rem;
         display: flex;
         justify-content: space-between;
         background-color: $secondary-color;
@@ -11,9 +11,9 @@
         margin: auto;
 
         .contact_main_info {
-            border: solid green 1px;
+            border: solid black 1px;
             color: $white-color;
-            width: 35%;
+            width: 45%;
 
             .info_content {
                 display: flex;
@@ -44,12 +44,22 @@
             }
         }
 
-        .contact_main_login {
-            border: solid blue 1px;
+        .contact_main_message {
+            display:  flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             background-color: $white-color;
             border-radius: 10px;
             width: 30rem;
 
+            form {
+                width: 80%;
+            }
+
+            .btn-primary {
+                background-color: $secondary-color !important;
+            }
         }
     }
 }

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
   IoAt,
   IoSunnyOutline,
@@ -13,7 +16,39 @@ import {
   IoLogoYoutube,
 } from "react-icons/io5";
 
-function contact() {
+function Contact() {
+  const [message, setMessage] = useState(""); // This will be used to show a message if the submission is successful
+  const [submitted, setSubmitted] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+    onSubmit: () => {
+      setMessage("Form submitted");
+      setSubmitted(true);
+    },
+    validationSchema: yup.object({
+      name: yup
+        .string()
+        .trim()
+        .min(2, "Too Short!")
+        .max(20, "Too Long!")
+        .required("Full name is required"),
+      email: yup
+        .string()
+        .email("Must be a valid email")
+        .required("Email is required"),
+      message: yup
+        .string()
+        .trim()
+        .min(10, "Too Short!")
+        .required("Message is required"),
+    }),
+  });
+
   return (
     <div className={styles.contact_container}>
       <Head>
@@ -26,11 +61,11 @@ function contact() {
       <main className={styles.contact_main}>
         <div className={styles.contact_main_info}>
           <h1>Contact us</h1>
-          <h4>Leave your email and we will get back to you within 24 hours</h4>
+          <h6>Leave your email and we will get back to you within 24 hours</h6>
           <div className={styles.info_content}>
             <IoAt />
             <div className={styles.info_content_item}>
-              <h5>Email</h5>
+              <h8>Email</h8>
               <span>Ask@Holidaze.com</span>
             </div>
           </div>
@@ -61,11 +96,74 @@ function contact() {
             <IoLogoInstagram />
           </div>
         </div>
-        <div className={styles.contact_main_login}>a</div>
+        <div className={styles.contact_main_message}>
+          <form onSubmit={formik.handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                className="form-control"
+                placeholder="Ahmed Jibril"
+                value={formik.values.full_name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.errors.name && (
+                <div className="text-danger">{formik.errors.name}</div>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                placeholder="Your@example.com"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.errors.email && (
+                <div className="text-danger">{formik.errors.email}</div>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="message" className="form-label">
+                Message
+              </label>
+              <textarea
+                name="message"
+                className="form-control"
+                placeholder="Your message ..."
+                value={formik.values.message}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.errors.message && (
+                <div className="text-danger">{formik.errors.message}</div>
+              )}
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Send
+            </button>
+          </form>
+
+          <div hidden={!submitted} className="alert alert-primary" role="alert">
+            {message}
+          </div>
+        </div>
       </main>
       <Footer />
     </div>
   );
 }
 
-export default contact;
+export default Contact;
