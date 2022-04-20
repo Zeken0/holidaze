@@ -5,6 +5,7 @@
     background-color: $secondary-color;
     border: solid $secondary-color 1.5px;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 @mixin button_hover {

@@ -4,7 +4,8 @@
     height: 100vh;
 
     .admin_action {
-        margin-top: 4rem;
+        margin-top: 3.5rem;
+        align-items: center;
         display: flex;
         justify-content: space-between;
 
@@ -16,6 +17,7 @@
             @include button_styiling;
             width: 11rem;
             height: 3rem;
+            border-radius: 0.3rem;
         }
     
         .add_button:hover {
