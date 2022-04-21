@@ -1,5 +1,5 @@
 .footer_container {
-  background-color: rgb(248 249 250) ;
+  background-color: rgb(255, 255, 255) ;
   padding: 1rem 4.5rem;
   height: 250px;
   width: 100%;
@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.14);
 
     .footer_top_content {
       width: 100%;
@@ -45,7 +46,7 @@
     .footer_lineSeparator {
       display: flex;
       min-width: 100%;
-      min-height: 1.5px;
+      min-height: 1.2px;
       background-color: #d8d8d852;
     }
 

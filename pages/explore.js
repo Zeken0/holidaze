@@ -20,7 +20,7 @@ function explore() {
         <div className={styles.explore_actions}>
           <h1>Explore our bookings</h1>
           <Select
-            placeholder="Search hotels"
+            placeholder="Search for hotels"
             variant="filled"
             size="lg"
             nothingFound="No hotels found"

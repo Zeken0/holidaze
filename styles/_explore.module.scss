@@ -17,9 +17,26 @@
         }
 
         input {
-            outline: $secondary-font !important;
-            color: $white-color !important;
-            background-color: $black-color !important;
+            outline: none;
+            border: none;
+            font-size: 18px;
+            color:$black-color;
+            font-weight: 500;
+            border-radius: 6px;
+            background-color: white;
+            box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.14);
+
+            &:focus {
+                outline:none;
+                &::placeholder {
+                opacity: 0;
+            }
+            }
+
+            &::placeholder {
+                color: #bebebe;
+                transition: all 250ms ease-in-out;
+            }
         }
 
     }
