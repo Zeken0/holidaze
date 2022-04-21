@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import { Tabs } from "@mantine/core";
+import { MessageCircle } from "tabler-icons-react";
 
 export default function Admin() {
   return (
@@ -20,10 +21,14 @@ export default function Admin() {
           <button className={styles.add_button}>Add establishment</button>
         </div>
         <div className={styles.admin_tabs}>
-          <Tabs position="apart" variant="outline">
+          <Tabs tabPadding="xl" color="orange" position="apart">
             <Tabs.Tab label="All">First tab content</Tabs.Tab>
-            <Tabs.Tab label="Enquiries">Second tab content</Tabs.Tab>
-            <Tabs.Tab label="Messages">Third tab content</Tabs.Tab>
+            <Tabs.Tab label="Enquiries" icon={<MessageCircle size={17} />}>
+              Second tab content
+            </Tabs.Tab>
+            <Tabs.Tab label="Messages" icon={<MessageCircle size={17} />}>
+              Third tab content
+            </Tabs.Tab>
           </Tabs>
         </div>
       </main>

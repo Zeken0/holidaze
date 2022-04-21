@@ -2,15 +2,17 @@
     width: 90%;
     margin: auto;
     height: 100vh;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
 
     .admin_action {
-        margin-top: 3.5rem;
         align-items: center;
         display: flex;
         justify-content: space-between;
 
         h1 {
             font-family: $secondary-font;
+            font-size: 2.5rem
         }
 
         .add_button {

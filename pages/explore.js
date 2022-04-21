@@ -2,6 +2,9 @@ import React from "react";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import styles from "../styles/Home.module.scss";
+import { Select } from "@mantine/core";
+import { ChevronDown, Search } from "tabler-icons-react";
 
 function explore() {
   return (
@@ -13,7 +16,24 @@ function explore() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
-      <main></main>
+      <main className={styles.explore_container}>
+        <div className={styles.explore_actions}>
+          <h1>Explore our bookings</h1>
+          <Select
+            placeholder="Search hotels"
+            variant="filled"
+            size="lg"
+            nothingFound="No hotels found"
+            icon={<Search size={21} />}
+            searchable
+            clearable
+            transitionDuration={80}
+            transitionTimingFunction="ease"
+            maxDropdownHeight={200}
+            data={["React", "Angular", "Svelte", "Vue", "next", "one more"]}
+          />
+        </div>
+      </main>
       <Footer />
     </div>
   );

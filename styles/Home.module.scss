@@ -5,6 +5,7 @@
 @import "_searchBar.module.scss";
 @import "_contact.module.scss";
 @import "_admin.module.scss";
+@import "_explore.module.scss";
 
 .home_container {
   
@@ -13,8 +14,7 @@
     border: solid black 1px;
     min-height: 100vh;
     width: 90%;
-    margin: auto;
-    margin-bottom: 1rem;
+    margin: 2.5rem auto 2.5rem auto;
 
     .home_herobanner {
       display: flex;
@@ -24,7 +24,7 @@
       background-repeat: no-repeat;
       background-size: contain;
       height: 400px;
-      width: 78.8rem;
+      width: 100%;
 
     }
   }
