@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import { Select } from "@mantine/core";
-import { ChevronDown, Search } from "tabler-icons-react";
+import { Search } from "tabler-icons-react";
 
 function explore() {
   return (

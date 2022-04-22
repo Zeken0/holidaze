@@ -20,7 +20,6 @@ export default function Home() {
           <SearchBar />
         </div>
       </main>
-
       <Footer />
     </div>
   );
