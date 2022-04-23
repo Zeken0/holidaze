@@ -4,8 +4,31 @@ import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
 import styles from "../styles/Home.module.scss";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
 
 export default function Home() {
+  const [message, setMessage] = useState(""); // This will be used to show a message if the submission is successful
+  const [submitted, setSubmitted] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    onSubmit: () => {
+      setMessage("Message delivered");
+      setSubmitted(true);
+    },
+    validationSchema: yup.object({
+      email: yup
+        .string()
+        .email("Must be a valid email")
+        .required("Email is required"),
+    }),
+  });
+
   return (
     <div className={styles.home_container}>
       <Head>
@@ -21,15 +44,54 @@ export default function Home() {
           <SearchBar />
         </div>
         <div className={styles.home_emailBanner}>
-          <div className={styles.home_emailBanner_leftContent}></div>
-          <div className={styles.home_emailBanner_rightContent}>
-            <Image
-              src="/images/emailBanner.png"
-              height={250}
-              width={250}
-              alt="Email banner"
-            />
+          <div className={styles.home_emailBanner_leftContent}>
+            <h2>Wait a minute...</h2>
+            <h3>Subscribe to our newsletter!</h3>
+            <p>
+              You will never miss important updates, latest news and community
+              QA sessions. Our newsletter is once a week, every Sunday.
+            </p>
+            <div className={styles.emailBanner_action}>
+              <form onSubmit={formik.handleSubmit}>
+                <div className="mb-1">
+                  <label htmlFor="email" className="form-label">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="form-control"
+                    placeholder="Your email"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  {formik.errors.email && (
+                    <div className="text-danger">{formik.errors.email}</div>
+                  )}
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Subscribe
+                </button>
+              </form>
+
+              <div
+                hidden={!submitted}
+                className="alert alert-primary"
+                role="alert"
+              >
+                {message}
+              </div>
+            </div>
           </div>
+        </div>
+        <div className={styles.home_emailBanner_rightContent}>
+          <Image
+            src="/images/emailBanner.png"
+            height={250}
+            width={250}
+            alt="Email banner"
+          />
         </div>
       </main>
       <Footer />
