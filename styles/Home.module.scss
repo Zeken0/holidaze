@@ -16,7 +16,7 @@
     width: 90%;
     margin: 2.5rem auto 2.5rem auto;
 
-    .home_herobanner {
+    .home_heroBanner {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -26,6 +26,14 @@
       height: 400px;
       width: 100%;
 
+    }
+
+    .home_emailBanner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: solid firebrick 1px;
+      height: 300px;
     }
   }
   
