@@ -7,12 +7,8 @@ import styles from "../styles/Home.module.scss";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
 
 export default function Home() {
-  const [message, setMessage] = useState(""); // This will be used to show a message if the submission is successful
-  const [submitted, setSubmitted] = useState(false);
-
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -53,10 +49,7 @@ export default function Home() {
             </p>
             <div className={styles.emailBanner_action}>
               <form onSubmit={formik.handleSubmit}>
-                <div className="mb-1">
-                  <label htmlFor="email" className="form-label">
-                    Email
-                  </label>
+                <div className="mb-2">
                   <input
                     type="email"
                     name="email"
@@ -70,18 +63,10 @@ export default function Home() {
                     <div className="text-danger">{formik.errors.email}</div>
                   )}
                 </div>
-                <button type="submit" className="btn btn-primary">
-                  Subscribe
-                </button>
               </form>
-
-              <div
-                hidden={!submitted}
-                className="alert alert-primary"
-                role="alert"
-              >
-                {message}
-              </div>
+              <button type="submit" className={styles.actionButton}>
+                Subscribe
+              </button>
             </div>
           </div>
         </div>
