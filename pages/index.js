@@ -69,14 +69,14 @@ export default function Home() {
               </button>
             </div>
           </div>
-        </div>
-        <div className={styles.home_emailBanner_rightContent}>
-          <Image
-            src="/images/emailBanner.png"
-            height={250}
-            width={250}
-            alt="Email banner"
-          />
+          <div className={styles.home_emailBanner_rightContent}>
+            <Image
+              src="/images/emailBanner.png"
+              height={250}
+              width={250}
+              alt="Email banner"
+            />
+          </div>
         </div>
       </main>
       <Footer />

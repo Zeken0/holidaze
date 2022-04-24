@@ -10,6 +10,7 @@
 .home_container {
   
   .home_main {
+    background-color: rgb(248 249 250);
     z-index: $low-index;
     min-height: 100vh;
     width: 90%;
@@ -28,27 +29,50 @@
     }
 
     .home_emailBanner {
+      padding: 1rem;
+      background-color: $white-color;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: solid firebrick 1px;
-      height: 300px; 
+      border: solid $black-color 1px;
+      height: 310px; 
 
       .home_emailBanner_leftContent {
-        width: 70%;
         display: flex;
         flex-direction: column;
-        border: solid 1px green;
 
+
+        h2 {
+          font-weight: 600;
+          font-size: 3rem;
+        }
+
+        h3 {
+          font-weight: 400;
+          font-size: 1.5rem;
+        }
+
+        p {
+          color: rgb(134 142 150);
+          width: 80%;
+        }
 
         .emailBanner_action {
-          border: solid red 1px;
           display: flex;
+          
+          .actionButton {
+            @include button_styiling;
+            border-radius: 0rem 0.3rem 0.3rem 0rem;
+          }
+
+          .actionButton:hover {
+            @include button_hover;
+          }
         }
       }
 
       .home_emailBanner_rightContent {
-        border:  solid 1px orchid
+        border: solid 1px red;
       }
     }
   }
