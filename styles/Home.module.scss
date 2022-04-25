@@ -29,12 +29,12 @@
     }
 
     .home_emailBanner {
-      padding: 1rem;
+      padding: 3rem;
       background-color: $white-color;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: solid $black-color 1px;
+      border: solid $black-color 1.5px;
       height: 310px; 
 
       .home_emailBanner_leftContent {
@@ -48,7 +48,7 @@
         }
 
         h3 {
-          font-weight: 400;
+          font-weight: 500;
           font-size: 1.5rem;
         }
 
@@ -58,11 +58,20 @@
         }
 
         .emailBanner_action {
+          width: 80%;
           display: flex;
+          border: solid 1px red;
           
+          .form-control {
+            border-radius: 0.3rem 0rem 0rem 0.3rem !important;
+            height: 3rem !important;
+          }
+
           .actionButton {
             @include button_styiling;
-            border-radius: 0rem 0.3rem 0.3rem 0rem;
+            border-radius: 0rem 0.25rem 0.25rem 0rem;
+            height: 2.7rem;
+            width: 7rem;
           }
 
           .actionButton:hover {
@@ -73,6 +82,12 @@
 
       .home_emailBanner_rightContent {
         border: solid 1px red;
+        height: 10rem;
+        width: 10rem;
+        background-image:  url("/public/images/emailBanner.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+
       }
     }
   }
