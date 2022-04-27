@@ -1,4 +1,4 @@
-import styles from "../styles/_searchBar.module.scss"
+import styles from "../styles/Home.module.scss"
 import React, { useState, useEffect, useRef } from "react";
 import { IoClose, IoSearch } from "react-icons/io5";
 import {useClickOutside} from "react-click-outside-hook"

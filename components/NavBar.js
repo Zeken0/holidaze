@@ -21,7 +21,7 @@ function Navbar() {
         <li>
           <Link href="/">
             <a>
-              <span className={styles.nav_actions_active}>H</span>ome
+              <span className={styles.nav_actions_styling}>H</span>ome
             </a>
           </Link>
         </li>
@@ -63,7 +63,7 @@ function Navbar() {
               <li>
                 <Link href="/">
                   <a>
-                    <span className={styles.nav_actions_active}>H</span>ome
+                    <span className={styles.nav_actions_styling}>H</span>ome
                   </a>
                 </Link>
               </li>

@@ -32,6 +32,10 @@ export default function Home() {
         <div className={styles.home_heroBanner}>
           <SearchBar />
         </div>
+        <div className={styles.home_featuredContent}>
+          <h1>Featured hotels</h1>
+          <div></div>
+        </div>
         <div className={styles.home_emailBanner}>
           <div className={styles.home_emailBanner_leftContent}>
             <h2>Wait a minute...</h2>
