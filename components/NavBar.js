@@ -12,7 +12,7 @@ function Navbar() {
       <div className={styles.nav_logo}>
         <Link href="/">
           <a>
-            <Image src="/images/logo.png" height={37} width={163} alt="Logo" />
+            <Image src="/images/logo.png" height={30} width={130} alt="Logo" />
           </a>
         </Link>
       </div>

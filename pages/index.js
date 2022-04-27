@@ -13,15 +13,8 @@ export default function Home() {
     initialValues: {
       email: "",
     },
-    onSubmit: () => {
-      setMessage("Message delivered");
-      setSubmitted(true);
-    },
     validationSchema: yup.object({
-      email: yup
-        .string()
-        .email("Must be a valid email")
-        .required("Email is required"),
+      email: yup.string().email("Must be a valid email"),
     }),
   });
 
@@ -49,11 +42,10 @@ export default function Home() {
             </p>
             <div className={styles.emailBanner_action}>
               <form onSubmit={formik.handleSubmit}>
-                <div className="mb-2">
+                <div className={styles.emailBanner_input}>
                   <input
                     type="email"
                     name="email"
-                    className="form-control"
                     placeholder="Your email"
                     value={formik.values.email}
                     onChange={formik.handleChange}
@@ -69,7 +61,14 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <div className={styles.home_emailBanner_rightContent}></div>
+          <div className={styles.home_emailBanner_rightContent}>
+            <Image
+              src="/images/emailBanner.png"
+              height={365}
+              width={450}
+              alt=""
+            />
+          </div>
         </div>
       </main>
       <Footer />

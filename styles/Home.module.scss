@@ -10,7 +10,6 @@
 .home_container {
   
   .home_main {
-    background-color: rgb(248 249 250);
     z-index: $low-index;
     min-height: 100vh;
     width: 90%;
@@ -25,22 +24,23 @@
       background-size: contain;
       height: 400px;
       width: 100%;
-
     }
 
     .home_emailBanner {
-      padding: 3rem;
+      padding: 3rem 2.5rem;
       background-color: $white-color;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: solid $black-color 1.5px;
-      height: 310px; 
+      border: solid #ced4dae2 1px;
+      border-radius: 0.25rem;
+      column-gap: 2rem;
+      height: 320px; 
 
       .home_emailBanner_leftContent {
         display: flex;
         flex-direction: column;
-
+        row-gap: 0.45rem;
 
         h2 {
           font-weight: 600;
@@ -58,14 +58,32 @@
         }
 
         .emailBanner_action {
+          margin-top: 0.8rem;
           width: 80%;
           display: flex;
-          border: solid 1px red;
-          
-          .form-control {
-            border-radius: 0.3rem 0rem 0rem 0.3rem !important;
-            height: 3rem !important;
+
+
+          .emailBanner_input {
+            width: 38.6rem;
+
+            input {
+              width: 100%;
+              border-radius: 0.3rem 0rem 0rem 0.3rem !important;
+              height: 2.7rem !important; 
+              padding: 0.375rem 0.75rem;
+              font-size: 1rem;
+              font-weight: 400;
+              line-height: 1.5;
+              color: $black-color;
+              border: 1px solid #ced4da;          
+            }
+
+            input:focus {
+              outline: $secondary-color;
+              border: 1px solid $secondary-color; 
+            }
           }
+          
 
           .actionButton {
             @include button_styiling;
@@ -80,15 +98,6 @@
         }
       }
 
-      .home_emailBanner_rightContent {
-        border: solid 1px red;
-        height: 10rem;
-        width: 10rem;
-        background-image:  url("/public/images/emailBanner.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-
-      }
     }
   }
   
