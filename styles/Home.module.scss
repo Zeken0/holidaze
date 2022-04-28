@@ -47,7 +47,6 @@
       justify-content: space-between;
       border: solid #ced4dae2 1px;
       border-radius: 0.25rem;
-      column-gap: 2rem;
       height: 320px; 
 
       .home_emailBanner_leftContent {
@@ -77,7 +76,7 @@
 
 
           .emailBanner_input {
-            width: 38.6rem;
+            width: 32.5rem;
 
             input {
               width: 100%;
@@ -114,6 +113,3 @@
     }
   } 
 }
-
-
-
