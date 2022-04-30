@@ -6,7 +6,21 @@ import styles from "../styles/Home.module.scss";
 import { Select } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 
-function explore() {
+const defaultEndpoint = "http://localhost:1337/api/hotels";
+
+export async function getServerSideProps() {
+  const res = await fetch(defaultEndpoint);
+  const data = await res.json();
+
+  return {
+    props: {
+      hotels: data,
+    },
+  };
+}
+
+function explore({ hotels }) {
+  console.log(hotels.data);
   return (
     <div>
       <Head>
@@ -30,8 +44,13 @@ function explore() {
             transitionDuration={80}
             transitionTimingFunction="ease"
             maxDropdownHeight={200}
-            data={["React", "Angular", "Svelte", "Vue", "next", "one more"]}
+            data={[]}
           />
+        </div>
+        <div className={styles.explore_hotels_container}>
+          {/* {hotels.map(({ id, name }) => {
+            return <span key={id}>{name}</span>;
+          })} */}
         </div>
       </main>
       <Footer />
