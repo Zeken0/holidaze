@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Footer from "../components/Footer";
@@ -8,7 +9,21 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function Home() {
+const defaultEndpoint = "http://localhost:1337/api/hotels";
+
+export async function getServerSideProps() {
+  const res = await fetch(defaultEndpoint);
+  const data = await res.json();
+
+  return {
+    props: {
+      hotels: data.data,
+    },
+  };
+}
+
+export default function Home(hotels) {
+  console.log(hotels);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -34,7 +49,11 @@ export default function Home() {
         </div>
         <div className={styles.home_featuredContent}>
           <h1>Featured hotels</h1>
-          <div></div>
+          <div>
+            {/* {hotels.map((hotel) => {
+              return <span key={hotel.id}>{hotel.attributes.name}</span>;
+            })} */}
+          </div>
         </div>
         <div className={styles.home_emailBanner}>
           <div className={styles.home_emailBanner_leftContent}>

@@ -14,13 +14,13 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      hotels: data,
+      hotels: data.data,
     },
   };
 }
 
 function explore({ hotels }) {
-  console.log(hotels.data);
+  console.log(hotels);
   return (
     <div>
       <Head>
@@ -44,13 +44,17 @@ function explore({ hotels }) {
             transitionDuration={80}
             transitionTimingFunction="ease"
             maxDropdownHeight={200}
-            data={[]}
+            data={[
+              hotels.map((hotel) => {
+                return <span key={hotel.id}>{hotel.attributes.name}</span>;
+              }),
+            ]}
           />
         </div>
         <div className={styles.explore_hotels_container}>
-          {/* {hotels.map(({ id, name }) => {
-            return <span key={id}>{name}</span>;
-          })} */}
+          {hotels.map((hotel) => {
+            return <span key={hotel.id}>{hotel.attributes.name}</span>;
+          })}
         </div>
       </main>
       <Footer />
