@@ -27,7 +27,7 @@ function Navbar() {
         </li>
 
         <li>
-          <Link href="/explore/index">
+          <Link href="/explore">
             <a>
               <span className={styles.nav_actions_styling}>E</span>xplore
             </a>
