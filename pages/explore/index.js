@@ -8,7 +8,7 @@ import { Select } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 import { useRouter } from "next/router";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch("http://localhost:1337/api/hotels");
   const data = await res.json();
 
