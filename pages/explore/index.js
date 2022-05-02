@@ -1,16 +1,15 @@
 import React from "react";
 import Head from "next/head";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
-import styles from "../styles/Home.module.scss";
+import Link from "next/link";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
+import styles from "../../styles/Home.module.scss";
 import { Select } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 import { useRouter } from "next/router";
 
-const defaultEndpoint = "http://localhost:1337/api/hotels";
-
 export async function getServerSideProps() {
-  const res = await fetch(defaultEndpoint);
+  const res = await fetch("http://localhost:1337/api/hotels");
   const data = await res.json();
 
   return {
@@ -23,8 +22,10 @@ export async function getServerSideProps() {
 function Explore({ hotels }) {
   const router = useRouter();
 
-  const handleOnClick = (hotelId) => {
-    router.push(`/details/${hotelId}`);
+  const handleOnClick = (hotels) => {
+    hotels.map((hotel) => {
+      router.push(`/explore/${hotel.id}`);
+    });
   };
 
   const searchData = hotels.map((hotel) => {
@@ -58,7 +59,11 @@ function Explore({ hotels }) {
         </div>
         <div className={styles.explore_hotels_container}>
           {hotels.map((hotel) => {
-            return <span key={hotel.id}>{hotel.attributes.name}</span>;
+            return (
+              <Link href={"/explore/" + hotel.id} key={hotel.id}>
+                {hotel.attributes.name}
+              </Link>
+            );
           })}
         </div>
       </main>
