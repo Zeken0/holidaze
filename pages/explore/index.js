@@ -21,6 +21,9 @@ export async function getServerSideProps() {
 
 function explore({ hotels }) {
   console.log(hotels);
+  const searchData = hotels.map((hotel) => {
+    return hotel.attributes.name;
+  });
   return (
     <div>
       <Head>
@@ -41,14 +44,10 @@ function explore({ hotels }) {
             icon={<Search size={21} />}
             searchable
             clearable
-            transitionDuration={80}
+            transitionDuration={100}
             transitionTimingFunction="ease"
-            maxDropdownHeight={200}
-            data={[
-              hotels.map((hotel) => {
-                return <span key={hotel.id}>{hotel.attributes.name}</span>;
-              }),
-            ]}
+            maxDropdownHeight={210}
+            data={searchData}
           />
         </div>
         <div className={styles.explore_hotels_container}>

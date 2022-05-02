@@ -1,4 +1,3 @@
-import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Footer from "../components/Footer";
@@ -23,7 +22,6 @@ export async function getServerSideProps() {
 }
 
 export default function Home(hotels) {
-  console.log(hotels);
   const formik = useFormik({
     initialValues: {
       email: "",
