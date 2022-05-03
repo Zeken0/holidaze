@@ -30,7 +30,7 @@ export const getStaticProps = async (context) => {
     const hotel = await response.data;
 
     return {
-      props: { hotel: hotel.attributes },
+      props: { hotel: hotel },
     };
   } catch (error) {
   } finally {
@@ -41,7 +41,7 @@ function Details(hotel) {
   console.log(hotel);
   return (
     <div>
-      <h1>Details nummber {hotel.id}</h1>
+      <h1>Details nummber {hotel.attributes.name}</h1>
     </div>
   );
 }

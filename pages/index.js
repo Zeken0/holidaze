@@ -8,6 +8,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import { Notification } from "@mantine/core";
+import { X } from "tabler-icons-react";
 
 export async function getStaticProps() {
   try {
@@ -16,7 +18,7 @@ export async function getStaticProps() {
 
     return {
       props: {
-        hotels: data.data,
+        hotels: data,
       },
     };
   } catch (error) {
@@ -50,11 +52,11 @@ export default function Home(hotels) {
           <div className={styles.home_heroBanner}>
             <SearchBar />
           </div>
-          <div className={styles.home_featuredContent}>
+          <div className={styles.home_featuredContainer}>
             <h1>Featured hotels</h1>
-            <div>
+            <div className={styles.home_featuredContent}>
               {hotels.map((hotel) => {
-                return <span key={hotel.id}>{hotel.attributes.name}</span>;
+                return <div key={hotel.id}>{hotel.attributes.name}</div>;
               })}
             </div>
           </div>
@@ -100,7 +102,10 @@ export default function Home(hotels) {
         <Footer />
       </div>
     );
-  } catch (error) {
+  } catch {
+    <Notification icon={<X size={18} />} color="red">
+      An error has occurd!
+    </Notification>;
   } finally {
   }
 }
