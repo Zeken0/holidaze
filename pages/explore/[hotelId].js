@@ -1,32 +1,44 @@
+import axios from "axios";
 import React from "react";
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:1337/api/hotels");
-  const data = await res.json();
+  try {
+    const response = await axios.get("http://localhost:1337/api/hotels");
+    const hotels = await response.data;
 
-  const paths = data.map((hotel) => {
+    console.log(hotels);
+
+    const paths = hotels.map((hotel) => {
+      return {
+        params: { id: hotel.id.toString() },
+      };
+    });
+
     return {
-      params: { id: hotel.id.toString() },
+      paths,
+      fallback: false,
     };
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
+  } catch (error) {
+  } finally {
+  }
 };
 
 export const getStaticProps = async (context) => {
-  const id = context.params.id;
-  const res = await fetch("http://localhost:1337/api/hotels" + id);
-  const data = await res.json();
+  try {
+    const id = context.params.id;
+    const response = await axios.get("http://localhost:1337/api/hotels/" + id);
+    const hotel = await response.data;
 
-  return {
-    props: { hotel: data.data },
-  };
+    return {
+      props: { hotel: hotel.attributes },
+    };
+  } catch (error) {
+  } finally {
+  }
 };
 
 function Details(hotel) {
+  console.log(hotel);
   return (
     <div>
       <h1>Details nummber {hotel.id}</h1>

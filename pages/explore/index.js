@@ -7,16 +7,22 @@ import styles from "../../styles/Home.module.scss";
 import { Select } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:1337/api/hotels");
-  const data = await res.json();
+  try {
+    const response = await axios.get("http://localhost:1337/api/hotels");
+    const data = await response.data;
 
-  return {
-    props: {
-      hotels: data.data,
-    },
-  };
+    return {
+      props: {
+        hotels: data.data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  } finally {
+  }
 }
 
 function Explore({ hotels }) {
