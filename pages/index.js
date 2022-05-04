@@ -18,7 +18,7 @@ export async function getStaticProps() {
 
     return {
       props: {
-        hotels: data,
+        hotels: data.data,
       },
     };
   } catch (error) {
@@ -27,7 +27,7 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home(hotels) {
+export default function Home({ hotels }) {
   try {
     const formik = useFormik({
       initialValues: {

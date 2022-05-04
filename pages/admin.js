@@ -5,9 +5,33 @@ import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import { Tabs } from "@mantine/core";
 import { MessageCircle } from "tabler-icons-react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export default function Admin() {
   try {
+    const [messages, setMessages] = useState([]);
+    const [enquiries, setEnquiries] = useState([]);
+
+    const fetchData = () => {
+      const getMessages = axios.get("http://localhost:1337/api/messages");
+      const getEnquiries = axios.get("http://localhost:1337/api/enquiries");
+
+      axios.all([getMessages, getEnquiries]).then(
+        axios.spread((...allData) => {
+          const allMessagesData = allData[0].data;
+          const allEnquiriesData = allData[0].data;
+
+          setMessages(allMessagesData);
+          setEnquiries(allEnquiriesData);
+        })
+      );
+    };
+
+    useEffect(() => {
+      fetchData();
+    }, []);
+
     return (
       <div>
         <Head>
@@ -25,10 +49,10 @@ export default function Admin() {
             <Tabs tabPadding="xl" color="orange" position="apart">
               <Tabs.Tab label="All">First tab content</Tabs.Tab>
               <Tabs.Tab label="Enquiries" icon={<MessageCircle size={17} />}>
-                Second tab content
+                <div> </div>
               </Tabs.Tab>
               <Tabs.Tab label="Messages" icon={<MessageCircle size={17} />}>
-                Third tab content
+                <div></div>
               </Tabs.Tab>
             </Tabs>
           </div>

@@ -6,8 +6,6 @@ export const getStaticPaths = async () => {
     const response = await axios.get("http://localhost:1337/api/hotels");
     const hotels = await response.data;
 
-    console.log(hotels);
-
     const paths = hotels.map((hotel) => {
       return {
         params: { id: hotel.id.toString() },
@@ -37,7 +35,7 @@ export const getStaticProps = async (context) => {
   }
 };
 
-function Details(hotel) {
+function Details({ hotel }) {
   console.log(hotel);
   return (
     <div>
