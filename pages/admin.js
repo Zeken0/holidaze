@@ -6,6 +6,7 @@ import styles from "../styles/Home.module.scss";
 import { Tabs } from "@mantine/core";
 import { MessageCircle } from "tabler-icons-react";
 import axios from "axios";
+import Link from "next/link";
 
 export default function Admin() {
   const [messages, setMessages] = useState([]);
@@ -42,11 +43,20 @@ export default function Admin() {
       <main className={styles.admin_container}>
         <div className={styles.admin_action}>
           <h1>Admin</h1>
-          <button className={styles.add_button}>Add establishment</button>
+          <Link href={"/addPage/"}>
+            <button className={styles.add_button}>Add establishment</button>
+          </Link>
         </div>
         <div className={styles.admin_tabs}>
           <Tabs tabPadding="xl" color="orange" position="apart">
-            <Tabs.Tab label="All">First tab content</Tabs.Tab>
+            <Tabs.Tab label="All">
+              {enquiries.map((enquiry) => {
+                return <h2 key={enquiry.id}>{enquiry.attributes.question}</h2>;
+              })}
+              {messages.map((message) => {
+                return <h2 key={message.id}>{message.attributes.message}</h2>;
+              })}
+            </Tabs.Tab>
             <Tabs.Tab label="Enquiries" icon={<MessageCircle size={17} />}>
               {enquiries.map((enquiry) => {
                 return <h2 key={enquiry.id}>{enquiry.attributes.question}</h2>;
