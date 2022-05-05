@@ -10,28 +10,35 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 export async function getStaticProps() {
+  let hotels = [];
   try {
     const response = await axios.get("http://localhost:1337/api/hotels");
     const data = await response.data;
-
-    return {
-      props: {
-        hotels: data.data,
-      },
-    };
+    hotels = data.data;
   } catch (error) {
     console.log(error);
   } finally {
   }
+  return {
+    props: {
+      hotels: hotels,
+    },
+  };
 }
 
 function Explore({ hotels }) {
   const router = useRouter();
 
-  const handleOnClick = (hotels) => {
-    hotels.map((hotel) => {
-      router.push(`/explore/${hotel.id}`);
+  const handleOnClick = (hotel) => {
+    // hotels.map((hotel) => {
+    // });
+    const selectedHotel = hotels.find((currentHotel) => {
+      console.log("hotel in list >>>", currentHotel.attributes.name);
+      return currentHotel.attributes.name === hotel;
     });
+
+    console.log("Selected hotel >>>", selectedHotel);
+    router.push(`/explore/${selectedHotel.id}`);
   };
 
   const searchData = hotels.map((hotel) => {
@@ -61,6 +68,9 @@ function Explore({ hotels }) {
             transitionTimingFunction="ease"
             maxDropdownHeight={210}
             data={searchData}
+            onChange={(hotel) => {
+              handleOnClick(hotel);
+            }}
           />
         </div>
         <div className={styles.explore_hotels_container}>
