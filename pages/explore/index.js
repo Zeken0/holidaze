@@ -17,7 +17,6 @@ export async function getStaticProps() {
     hotels = data.data;
   } catch (error) {
     console.log(error);
-  } finally {
   }
   return {
     props: {
@@ -29,12 +28,13 @@ export async function getStaticProps() {
 function Explore({ hotels }) {
   const router = useRouter();
 
-  const handleOnClick = (hotel) => {
-    // hotels.map((hotel) => {
-    // });
+  const handleOnClick = (hotelName) => {
+    if (!hotelName) {
+      return;
+    }
+
     const selectedHotel = hotels.find((currentHotel) => {
-      console.log("hotel in list >>>", currentHotel.attributes.name);
-      return currentHotel.attributes.name === hotel;
+      return currentHotel.attributes.name === hotelName;
     });
 
     console.log("Selected hotel >>>", selectedHotel);
