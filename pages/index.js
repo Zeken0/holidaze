@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import Image from "next/image";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
@@ -23,8 +24,12 @@ export async function getStaticProps() {
     };
   } catch (error) {
     console.log(error);
-  } finally {
   }
+  return {
+    props: {
+      hotels: data.data,
+    },
+  };
 }
 
 export default function Home({ hotels }) {
@@ -56,7 +61,11 @@ export default function Home({ hotels }) {
             <h1>Featured hotels</h1>
             <div className={styles.home_featuredContent}>
               {hotels.map((hotel) => {
-                return <div key={hotel.id}>{hotel.attributes.name}</div>;
+                return (
+                  <Link href={"/explore/" + hotel.id} key={hotel.id}>
+                    {hotel.attributes.name}
+                  </Link>
+                );
               })}
             </div>
           </div>

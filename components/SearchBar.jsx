@@ -54,9 +54,11 @@ function SearchBar(props) {
     },[isClickedOutSide])
 
     const prepareSearchQuery = (query) => {
-        const url = `https://makers-studio.herokuapp.com/Products/${query}`;
+        const url = `http://localhost:1337/api/hotels/${query}`;
+        console.log(url);
 
         return encodeURI(url);
+        
     }
 
     const searchHotels = async () => {
@@ -71,7 +73,7 @@ function SearchBar(props) {
         })
 
         if (response) {
-            console.log("Response: ", response.data);
+            console.log("Response: ", response.data.data);
 
             setIsLoading(false)
         }

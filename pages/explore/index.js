@@ -37,7 +37,6 @@ function Explore({ hotels }) {
       return currentHotel.attributes.name === hotelName;
     });
 
-    console.log("Selected hotel >>>", selectedHotel);
     router.push(`/explore/${selectedHotel.id}`);
   };
 
