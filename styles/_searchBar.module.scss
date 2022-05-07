@@ -81,5 +81,13 @@
             align-items: center;
             justify-content: center;
         }
+
+        .warningMessage {
+            color: #a1a1a1;
+            font-size: 14px;
+            display: flex;
+            align-self: center;
+            justify-self: center;
+        }
     }
 }

@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import MoonLoader from "react-spinners/MoonLoader";
 import { useDebounce } from "../hooks/debounceHook";
 import axios from "axios";
+import Link from "next/link";
 
 const containerVariants = {
     expanded: {
@@ -28,6 +29,10 @@ function SearchBar(props) {
     const inputRef = useRef();
     const [searchQuery, setSearchQuery] = useState("")
     const [isLoading, setIsLoading] = useState(false)
+    const [isHotels, setIsHotels] = useState([]);
+    const [noHotels, setNoHotels] = useState(false);
+
+  const isEmpty = !isHotels || isHotels.length === 0;
 
     const changeHandler = (e) => {
         e.preventDefault();
@@ -53,30 +58,25 @@ function SearchBar(props) {
         }
     },[isClickedOutSide])
 
-    const prepareSearchQuery = (query) => {
-        const url = `http://localhost:1337/api/hotels/${query}`;
-        console.log(url);
-
-        return encodeURI(url);
-        
-    }
-
     const searchHotels = async () => {
         if (!searchQuery || searchQuery.trim() === "") 
             return;
         setIsLoading(true);
+        setNoHotels(false);
 
-        const URL = prepareSearchQuery(searchQuery);
 
-        const response = await axios.get(URL).catch((err) => {
+        const response = await axios.get("http://localhost:1337/api/hotels/").catch((err) => {
             console.log("error:", err); 
         })
 
         if (response) {
             console.log("Response: ", response.data.data);
+            if (response.data && response.data.length === 0) setNoHotels(true);
+                setIsHotels(response.data.data);
+            
 
-            setIsLoading(false)
         }
+        setIsLoading(false)
     }
 
     useDebounce(searchQuery, 500, searchHotels);
@@ -117,6 +117,25 @@ function SearchBar(props) {
                 <div className={styles.loadingWrapper}>
                     <MoonLoader loading size={20}/>
                 </div>
+                {!isLoading && isEmpty && !noHotels && (
+                    <div className={styles.loadingWrapper}>
+                        <span className={styles.warningMessage}>Start typing to Search</span>
+                    </div>
+                )}
+                {!isLoading && noHotels && (
+                    <div className={styles.loadingWrapper}>
+                    <span className={styles.warningMessage}>No hotels found!</span>
+                </div>
+                )}
+                {!isLoading && !isEmpty && (
+                    isHotels.map((hotel) => {
+                        return (
+                          <Link href={"/explore/" + hotel.id} key={hotel.id}>
+                            {hotel.attributes.name}
+                          </Link>
+                        );
+                      })
+                )}
             </div>
             )}
         </motion.div>
