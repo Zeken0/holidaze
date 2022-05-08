@@ -1,0 +1,32 @@
+.login_container {
+    .login_main {
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: solid red 1px;
+        height: 100vh;
+        width: 90%;
+        margin: 2.5rem auto  2.5rem auto;
+
+        .main_image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            border: solid 1px blueviolet;
+        }
+        .main_content {
+            
+            row-gap: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            border: solid 1px goldenrod;
+        }
+    }
+}

@@ -40,7 +40,9 @@ function Navbar() {
             </a>
           </Link>
         </li>
-        <button className={styles.nav_actions_button}>Sign in</button>
+        <Link href="/loginPage">
+          <button className={styles.nav_actions_button}>Sign in</button>
+        </Link>
       </ul>
 
       <div className={styles.nav_burger}>
