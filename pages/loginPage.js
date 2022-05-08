@@ -46,54 +46,56 @@ function loginPage() {
         <div className={styles.main_image}>
           <Image
             src="/images/loginImg.png"
-            height={500}
-            width={500}
+            height={400}
+            width={400}
             alt="an image of a person and a gigantic phone"
           />
         </div>
         <div className={styles.main_content}>
-          <h1>Login</h1>
-          <form onSubmit={formik.handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                placeholder="Your@example.com"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.errors.email && (
-                <div className="text-danger">{formik.errors.email}</div>
-              )}
-            </div>
+          <div className={styles.content_form}>
+            <h1>Sign in</h1>
+            <form onSubmit={formik.handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  placeholder="admin@admin.com"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.errors.email && (
+                  <div className="text-danger">{formik.errors.email}</div>
+                )}
+              </div>
 
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
-              <input
-                type="text"
-                name="password"
-                className="form-control"
-                placeholder=""
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.errors.password && (
-                <div className="text-danger">{formik.errors.password}</div>
-              )}
-            </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input
+                  type="text"
+                  name="password"
+                  className="form-control"
+                  placeholder="Admin1234"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.errors.password && (
+                  <div className="text-danger">{formik.errors.password}</div>
+                )}
+              </div>
 
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
-          </form>
+              <button type="submit" className={styles.login_button}>
+                Login
+              </button>
+            </form>
+          </div>
         </div>
       </main>
       <Footer />

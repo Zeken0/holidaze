@@ -4,9 +4,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border: solid red 1px;
-        height: 100vh;
-        width: 90%;
+        height: 80vh;
+        width: 80%;
         margin: 2.5rem auto  2.5rem auto;
 
         .main_image {
@@ -15,18 +14,46 @@
             justify-content: center;
             height: 100%;
             width: 100%;
-            border: solid 1px blueviolet;
+            
         }
         .main_content {
-            
-            row-gap: 1rem;
+            border-radius: 0.6rem;
+            background-color: $secondary-color;
+            row-gap: 2rem;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
             height: 100%;
             width: 100%;
-            border: solid 1px goldenrod;
+
+            .content_form {
+                background-color:$white-color;
+                row-gap: 2rem;
+                display: flex;
+                flex-direction: column;
+                height: 430px;
+                width: 85%;
+                margin: auto;
+                align-items: center;
+                justify-content: center;
+                border-radius: 0.6rem;
+
+                input {
+                    width: 100% !important;
+                }
+
+                .login_button {
+                    @include button_styiling;
+                    height: 2.5rem;
+                    border-radius: 0.2rem;
+                    width: 6rem;
+                }
+
+                .login_button:hover {
+                    @include button_hover;
+                }
+            }
+            
         }
     }
 }
