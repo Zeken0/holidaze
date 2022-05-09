@@ -61,11 +61,28 @@ export default function Home({ hotels }) {
             <h1>Featured hotels</h1>
             <div className={styles.home_featuredContent}>
               {hotels.map((hotel) => {
-                return (
-                  <Link href={"/explore/" + hotel.id} key={hotel.id}>
-                    {hotel.attributes.name}
-                  </Link>
-                );
+                if (hotel.id <= 4) {
+                  return (
+                    <Link href={"/explore/" + hotel.id} key={hotel.id}>
+                      <div className={styles.home_featuredItem}>
+                        {/* <Image
+                          src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlZXxlbnwwfHwwfHw%3D&w=1000&q=80"
+                          height={100}
+                          width={100}
+                          alt="Image of the hotel"
+                        /> */}
+                        <span className={styles.featuredItem_name}>
+                          {hotel.attributes.name}
+                        </span>
+                        <span className={styles.featuredItem_price}>
+                          Starting from {hotel.attributes.price} NOK
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                } else {
+                  return;
+                }
               })}
             </div>
           </div>

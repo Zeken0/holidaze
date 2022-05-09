@@ -1,11 +1,12 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import styles from "../../styles/Home.module.scss";
 import { Select } from "@mantine/core";
-import { Search } from "tabler-icons-react";
+import { Search, Location } from "tabler-icons-react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
@@ -73,13 +74,30 @@ function Explore({ hotels }) {
           />
         </div>
         <div className={styles.explore_hotels_container}>
-          {hotels.map((hotel) => {
-            return (
-              <Link href={"/explore/" + hotel.id} key={hotel.id}>
-                {hotel.attributes.name}
-              </Link>
-            );
-          })}
+          <div className={styles.explore_filter}></div>
+          <div className={styles.explore_content}>
+            {hotels.map((hotel) => {
+              return (
+                <Link href={"/explore/" + hotel.id} key={hotel.id}>
+                  <div className={styles.content_item}>
+                    <Image
+                      src="/images/emailBanner.png"
+                      height={250}
+                      width={250}
+                      alt="Image of a hotel"
+                    />
+                    <div className={styles.item_info}>
+                      <h2>{hotel.attributes.name}</h2>
+                      <span>
+                        <Location /> {hotel.attributes.location}
+                      </span>
+                      <p>{hotel.attributes.about}</p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </main>
       <Footer />
