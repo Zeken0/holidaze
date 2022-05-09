@@ -5,7 +5,7 @@ import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import styles from "../../styles/Home.module.scss";
-import { Select } from "@mantine/core";
+import { Select, Spoiler } from "@mantine/core";
 import { Search, Location } from "tabler-icons-react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -78,23 +78,32 @@ function Explore({ hotels }) {
           <div className={styles.explore_content}>
             {hotels.map((hotel) => {
               return (
-                <Link href={"/explore/" + hotel.id} key={hotel.id}>
-                  <div className={styles.content_item}>
-                    <Image
-                      src="/images/emailBanner.png"
-                      height={250}
-                      width={250}
-                      alt="Image of a hotel"
-                    />
-                    <div className={styles.item_info}>
-                      <h2>{hotel.attributes.name}</h2>
-                      <span>
-                        <Location /> {hotel.attributes.location}
-                      </span>
-                      <p>{hotel.attributes.about}</p>
-                    </div>
+                <div className={styles.content_item} key={hotel.id}>
+                  <Image
+                    src="/images/emailBanner.png"
+                    height={250}
+                    width={250}
+                    alt="Image of a hotel"
+                  />
+                  <div className={styles.item_info}>
+                    <Link href={"/explore/" + hotel.id} key={hotel.id}>
+                      <h3>{hotel.attributes.name}</h3>
+                    </Link>
+                    <span>
+                      <Location /> {hotel.attributes.location}
+                    </span>
+                    <Spoiler
+                      maxHeight={90}
+                      showLabel="Show more"
+                      hideLabel="Hide"
+                    >
+                      {hotel.attributes.about}
+                    </Spoiler>
+                    <Link href={"/explore/" + hotel.id} key={hotel.id}>
+                      <button className={styles.item_button}>View more</button>
+                    </Link>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>
