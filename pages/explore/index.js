@@ -11,6 +11,7 @@ import {
   RangeSlider,
   RadioGroup,
   Radio,
+  CheckboxGroup,
 } from "@mantine/core";
 import { Search, Location } from "tabler-icons-react";
 import { useRouter } from "next/router";
@@ -81,30 +82,22 @@ function Explore({ hotels }) {
         </div>
         <div className={styles.explore_hotels_container}>
           <div className={styles.explore_filter}>
-            <div>
+            <div className={styles.filter_content}>
               <h3>Popular filters</h3>
-              <Checkbox
-                label="Breakfast included"
+              <CheckboxGroup
                 color="red"
+                orientation="vertical"
                 radius="xs"
                 size="md"
-              />
-              <Checkbox label="Spa" color="red" radius="xs" size="md" />
-              <Checkbox label="Pool" color="red" radius="xs" size="md" />
-              <Checkbox
-                label="Pet friendly"
-                color="red"
-                radius="xs"
-                size="md"
-              />
-              <Checkbox
-                label="Bathtub in room"
-                color="red"
-                radius="xs"
-                size="md"
-              />
+              >
+                <Checkbox value="react" label="Breakfast included" />
+                <Checkbox value="svelte" label="Spa" />
+                <Checkbox value="svelte" label="Pool" />
+                <Checkbox value="ng" label="Pet friendly" />
+                <Checkbox value="vue" label="Bathtub in room" />
+              </CheckboxGroup>
             </div>
-            <div>
+            <div className={styles.filter_content}>
               <h3>Price (for 1 night)</h3>
               <RangeSlider
                 color="red"
@@ -117,7 +110,7 @@ function Explore({ hotels }) {
                 ]}
               />
             </div>
-            <div>
+            <div className={styles.filter_content}>
               <h3>Star rating</h3>
               <RadioGroup spacing="xs" size="md" color="red">
                 <Radio value="One" label="One" />
@@ -125,6 +118,30 @@ function Explore({ hotels }) {
                 <Radio value="Three" label="Three" />
                 <Radio value="Foure" label="Four" />
               </RadioGroup>
+            </div>
+            <div className={styles.filter_content}>
+              <h3>Guest rating</h3>
+              <RangeSlider
+                color="red"
+                size="lg"
+                showLabelOnHover={true}
+                marks={[
+                  { value: 0, label: "0" },
+                  { value: 100, label: "10" },
+                ]}
+              />
+            </div>
+            <div className={styles.filter_content}>
+              <h3>Free cancellation and payment</h3>
+              <CheckboxGroup
+                color="red"
+                orientation="vertical"
+                radius="xs"
+                size="md"
+              >
+                <Checkbox value="react" label="Free cancellation" />
+                <Checkbox value="svelte" label="Pay with gift card" />
+              </CheckboxGroup>
             </div>
           </div>
           <div className={styles.explore_content}>
