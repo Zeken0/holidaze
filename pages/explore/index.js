@@ -5,7 +5,13 @@ import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import styles from "../../styles/Home.module.scss";
-import { Select, Spoiler } from "@mantine/core";
+import {
+  Select,
+  Checkbox,
+  RangeSlider,
+  RadioGroup,
+  Radio,
+} from "@mantine/core";
 import { Search, Location } from "tabler-icons-react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -74,7 +80,53 @@ function Explore({ hotels }) {
           />
         </div>
         <div className={styles.explore_hotels_container}>
-          <div className={styles.explore_filter}></div>
+          <div className={styles.explore_filter}>
+            <div>
+              <h3>Popular filters</h3>
+              <Checkbox
+                label="Breakfast included"
+                color="red"
+                radius="xs"
+                size="md"
+              />
+              <Checkbox label="Spa" color="red" radius="xs" size="md" />
+              <Checkbox label="Pool" color="red" radius="xs" size="md" />
+              <Checkbox
+                label="Pet friendly"
+                color="red"
+                radius="xs"
+                size="md"
+              />
+              <Checkbox
+                label="Bathtub in room"
+                color="red"
+                radius="xs"
+                size="md"
+              />
+            </div>
+            <div>
+              <h3>Price (for 1 night)</h3>
+              <RangeSlider
+                color="red"
+                size="lg"
+                showLabelOnHover={false}
+                marks={[
+                  { value: 0, label: "cheap" },
+                  { value: 50, label: "affordable" },
+                  { value: 100, label: "expensive" },
+                ]}
+              />
+            </div>
+            <div>
+              <h3>Star rating</h3>
+              <RadioGroup spacing="xs" size="md" color="red">
+                <Radio value="One" label="One" />
+                <Radio value="Two" label="Two" />
+                <Radio value="Three" label="Three" />
+                <Radio value="Foure" label="Four" />
+              </RadioGroup>
+            </div>
+          </div>
           <div className={styles.explore_content}>
             {hotels.map((hotel) => {
               return (
@@ -92,13 +144,6 @@ function Explore({ hotels }) {
                     <span>
                       <Location /> {hotel.attributes.location}
                     </span>
-                    <Spoiler
-                      maxHeight={90}
-                      showLabel="Show more"
-                      hideLabel="Hide"
-                    >
-                      {hotel.attributes.about}
-                    </Spoiler>
                     <Link href={"/explore/" + hotel.id} key={hotel.id}>
                       <button className={styles.item_button}>View more</button>
                     </Link>
