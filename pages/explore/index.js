@@ -23,8 +23,8 @@ export async function getStaticProps() {
     const response = await axios.get("http://localhost:1337/api/hotels");
     const data = await response.data;
     hotels = data.data;
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
   }
   return {
     props: {
