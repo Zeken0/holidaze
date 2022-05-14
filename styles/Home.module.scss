@@ -46,7 +46,7 @@
       .home_featuredContent, .home_popularContent {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         row-gap: 2rem;
         column-gap: 1.5rem;

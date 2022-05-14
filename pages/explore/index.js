@@ -111,13 +111,18 @@ function Explore({ hotels }) {
             </div>
             <div className={styles.filter_content}>
               <h3>Star rating</h3>
-              <RadioGroup spacing="xs" size="md" color="red" rad>
-                <Radio value="One" label="One" />
-                <Radio value="Two" label="Two" />
-                <Radio value="Three" label="Three" />
-                <Radio value="Foure" label="Four" />
-                <Radio value="Five" label="Five" />
-              </RadioGroup>
+              <CheckboxGroup
+                color="red"
+                orientation="vertical"
+                radius="xs"
+                size="md"
+              >
+                <Checkbox value="5" label="5. star" />
+                <Checkbox value="4" label="4. star" />
+                <Checkbox value="3" label="3. star" />
+                <Checkbox value="2" label="2. star" />
+                <Checkbox value="1" label="1. star" />
+              </CheckboxGroup>
             </div>
             <div className={styles.filter_content}>
               <h3>Free cancellation and payment</h3>
