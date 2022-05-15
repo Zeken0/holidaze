@@ -35,9 +35,6 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface TableScrollAreaProps {
-  data: { name: string, email: string, company: string }[];
-}
 
 export default function Admin() {
   const [messages, setMessages] = useState([]);
