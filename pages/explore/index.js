@@ -13,7 +13,7 @@ import {
   Radio,
   CheckboxGroup,
 } from "@mantine/core";
-import { Search, Location } from "tabler-icons-react";
+import { Search, Location, ChevronDown } from "tabler-icons-react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
@@ -71,6 +71,8 @@ function Explore({ hotels }) {
             icon={<Search size={21} />}
             searchable
             clearable
+            rightSection={<ChevronDown size={14} />}
+            rightSectionWidth={0}
             transitionDuration={100}
             transitionTimingFunction="ease"
             maxDropdownHeight={210}
