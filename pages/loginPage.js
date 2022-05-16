@@ -7,20 +7,36 @@ import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+import { useRouter } from "next/router";
 
-function loginPage() {
-  const [message, setMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+function LoginPage() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const credentials = { username, password };
+
+    const user = await axios.post(
+      "http://localhost:1337/auth/login",
+      credentials
+    );
+
+    if (user.status === 200) {
+      router.push("/admin");
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: () => {
-      setMessage("Message delivered");
-      setSubmitted(true);
-    },
+    onSubmit: () => {},
     validationSchema: yup.object({
       password: yup
         .string()
@@ -103,4 +119,4 @@ function loginPage() {
   );
 }
 
-export default loginPage;
+export default LoginPage;

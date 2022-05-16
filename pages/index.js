@@ -36,10 +36,28 @@ export default function Home({ hotels }) {
   try {
     const formik = useFormik({
       initialValues: {
+        name: "",
         email: "",
+        question: "",
+        emailTwo: "",
       },
       validationSchema: yup.object({
-        email: yup.string().email("Must be a valid email"),
+        name: yup
+          .string()
+          .trim()
+          .min(2, "Too Short!")
+          .max(20, "Too Long!")
+          .required("Name is required"),
+        email: yup
+          .string()
+          .email("Must be a valid email")
+          .required("Email is required"),
+        question: yup
+          .string()
+          .trim()
+          .min(10, "Too Short!")
+          .required("Question is required"),
+        emailTwo: yup.string().email("Must be a valid email"),
       }),
     });
 
@@ -58,19 +76,19 @@ export default function Home({ hotels }) {
             <SearchBar />
           </div>
           <div className={styles.home_featuredContainer}>
-            <h1>Featured hotels</h1>
+            <span className={styles.intro_text}>Featured hotels</span>
             <div className={styles.home_featuredContent}>
               {hotels.map((hotel) => {
                 if (hotel.id <= 4) {
                   return (
                     <Link href={"/explore/" + hotel.id} key={hotel.id}>
                       <div className={styles.home_featuredItem}>
-                        {/* <Image
+                        <Image
                           src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlZXxlbnwwfHwwfHw%3D&w=1000&q=80"
-                          height={100}
-                          width={100}
+                          height={250}
+                          width={250}
                           alt="Image of the hotel"
-                        /> */}
+                        />
                         <span className={styles.featuredItem_name}>
                           {hotel.attributes.name}
                         </span>
@@ -99,14 +117,16 @@ export default function Home({ hotels }) {
                   <div className={styles.emailBanner_input}>
                     <input
                       type="email"
-                      name="email"
+                      name="emailTwo"
                       placeholder="Your email"
-                      value={formik.values.email}
+                      value={formik.values.emailTwo}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    {formik.errors.email && (
-                      <div className="text-danger">{formik.errors.email}</div>
+                    {formik.errors.emailTwo && (
+                      <div className="text-danger">
+                        {formik.errors.emailTwo}
+                      </div>
                     )}
                   </div>
                 </form>
@@ -132,12 +152,12 @@ export default function Home({ hotels }) {
                   return (
                     <Link href={"/explore/" + hotel.id} key={hotel.id}>
                       <div className={styles.home_popularItem}>
-                        {/* <Image
+                        <Image
                           src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlZXxlbnwwfHwwfHw%3D&w=1000&q=80"
-                          height={100}
-                          width={100}
+                          height={250}
+                          width={250}
                           alt="Image of the hotel"
-                        /> */}
+                        />
                         <span className={styles.popularItem_name}>
                           {hotel.attributes.name}
                         </span>
@@ -151,6 +171,81 @@ export default function Home({ hotels }) {
                   return;
                 }
               })}
+            </div>
+          </div>
+          <div className={styles.enquiry_container}>
+            <span className={styles.intro_text}>Have a question?</span>
+            <div className={styles.enquiry_content}>
+              <div>
+                <Image
+                  src="/images/questionImg.png"
+                  height={390}
+                  width={390}
+                  alt="Image of two people and a question mark"
+                />
+              </div>
+              <div className={styles.enquiry_form}>
+                <form onSubmit={formik.handleSubmit}>
+                  <div className="mb-3">
+                    <label htmlFor="name" className="form-label">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      className="form-control"
+                      placeholder="Ahmed Jibril"
+                      value={formik.values.full_name}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {formik.errors.name && (
+                      <div className="text-danger">{formik.errors.name}</div>
+                    )}
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      className="form-control"
+                      placeholder="Your@example.com"
+                      value={formik.values.email}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {formik.errors.email && (
+                      <div className="text-danger">{formik.errors.email}</div>
+                    )}
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="question" className="form-label">
+                      Question
+                    </label>
+                    <textarea
+                      name="question"
+                      className="form-control"
+                      placeholder="Your question ..."
+                      value={formik.values.question}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {formik.errors.question && (
+                      <div className="text-danger">
+                        {formik.errors.question}
+                      </div>
+                    )}
+                  </div>
+
+                  <button type="submit" className={styles.enquiry_btn}>
+                    Ask question
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </main>
