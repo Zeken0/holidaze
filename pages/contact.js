@@ -159,22 +159,12 @@ function Contact() {
                 Send message
               </button>
             </form>
-
-            <div
-              hidden={!submitted}
-              className="alert alert-primary"
-              role="alert"
-            >
-              {message}
-            </div>
           </div>
         </main>
         <Footer />
       </div>
     );
-  } catch (error) {
-  } finally {
-  }
+  } catch (error) {}
 }
 
 export default Contact;
