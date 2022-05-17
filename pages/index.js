@@ -137,7 +137,7 @@ export default function Home({ hotels }) {
             <Select
               placeholder="Search for hotels"
               variant="filled"
-              size="xl"
+              size="lg"
               nothingFound="No hotels found"
               icon={<Search size={26} />}
               searchable
@@ -147,7 +147,7 @@ export default function Home({ hotels }) {
               transitionDuration={80}
               transition="pop-top-left"
               transitionTimingFunction="ease"
-              maxDropdownHeight={200}
+              maxDropdownHeight={172}
               data={searchData}
               onChange={(hotel) => {
                 handleOnClick(hotel);
@@ -156,7 +156,7 @@ export default function Home({ hotels }) {
           </div>
 
           <div className={styles.home_featuredContainer}>
-            <span className={styles.intro_text}>Featured hotels</span>
+            <h1 className={styles.intro_text}>Featured hotels</h1>
             <Slider {...settings}>
               {hotels.map((hotel) => {
                 if (hotel.id <= 4) {
@@ -227,7 +227,7 @@ export default function Home({ hotels }) {
           </div>
 
           <div className={styles.home_popularContainer}>
-            <h1>Most popular hotels</h1>
+            <span className={styles.intro_text}>Most popular hotels</span>
             <Slider {...settings}>
               {hotels.map((hotel) => {
                 if (hotel.id <= 4) {

@@ -1,12 +1,18 @@
 .nav_container {
     z-index: $base-index;
     display:  flex;
-    padding: 0rem 4.2rem;
-    justify-content: space-between;
     align-items: center;
     height: 65px;
     width: 100%;
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+
+    .nav_content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        margin: auto;
+    }
     
     .nav_logo {
         cursor: pointer;
@@ -67,5 +73,59 @@
     .nav_drawer {
         z-index: $base-index;
         display: none;
+    }
+}
+
+/* ----------------------------------------------------- Tablet -------------------------------------------- */
+@media (max-width: 1112px) {
+
+    
+
+}
+
+/* ----------------------------------------------------- Mobile -------------------------------------------- */
+@media (max-width: 767px) { 
+
+    .nav_actions_mobile {
+        font-family: $secondary-font;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.5rem;
+        list-style: none;
+        font-size: 1.5rem;
+        font-weight: 500;
+
+        li {
+            cursor: pointer;
+            .nav_actions_styling {
+                color: $secondary-color;
+            }
+        }
+        
+        li:hover {
+            .nav_actions_styling {
+                color: $primary-color;
+            }
+        }
+        .nav_actions_button {
+            @include button_styiling;
+            font-size: 1.3rem;
+            height: 50px;
+            width: 7.5rem;
+            border-radius: 0.25rem;
+        }
+
+        .nav_actions_button:hover {
+            background-color: $primary-color;
+            border: solid $primary-color 1.5px;
+        }
+    }
+
+    .nav_actions {
+        display: none !important;
+    }
+
+    .nav_burger {
+        display: unset !important;
     }
 }
