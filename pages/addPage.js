@@ -2,10 +2,13 @@ import React from "react";
 import Head from "next/head";
 import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
+import styles from "../styles/Home.module.scss";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 function addPage() {
   return (
-    <div>
+    <div className={styles.add_container}>
       <Head>
         <title>Add page | Holidaze</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,7 +16,7 @@ function addPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main></main>
+      <main className={styles.add_main}></main>
       <Footer />
     </div>
   );
