@@ -1,9 +1,7 @@
 .login_container {
+
     .login_main {
-        
         display: flex;
-        align-items: center;
-        justify-content: space-between;
         height: 80vh;
         width: 80%;
         margin: 2.5rem auto  2.5rem auto;
@@ -17,7 +15,7 @@
             
         }
         .main_content {
-            border-radius: 0.6rem;
+            border-radius: 1.5rem 1.5rem 0rem 1.5rem;
             background-color: $secondary-color;
             row-gap: 2rem;
             display: flex;
@@ -31,15 +29,16 @@
                 row-gap: 2rem;
                 display: flex;
                 flex-direction: column;
-                height: 430px;
-                width: 85%;
+                height: 440px;
+                width: 90%;
                 margin: auto;
                 align-items: center;
                 justify-content: center;
-                border-radius: 0.6rem;
+                border-radius: 1.5rem 1.5rem 0rem 1.5rem;
 
                 input {
-                    width: 100% !important;
+                    width: 20rem ;
+                    outline: none
                 }
 
                 .login_button {
@@ -61,9 +60,47 @@
 /* ----------------------------------------------------- Tablet -------------------------------------------- */
 @media (max-width: 1112px) {
 
+    .login_main {
+        height: 100vh !important;
+        flex-direction: column;
+        width: 80% !important;
+    }
+
+    .main_content {
+        padding: 2rem 0;
+    }
+
+    .content_form {
+        height: fit-content !important;
+        padding: 2rem 0;
+    }
+
 }
 
 /* ----------------------------------------------------- Mobile -------------------------------------------- */
 @media (max-width: 767px) {
 
+    .login_main {
+        height: 100vh !important;
+        justify-content: space-around;
+        flex-direction: column;
+        width: 90% !important;
+    }
+
+    .main_content {
+        padding: 1.5rem 0;
+    }
+
+    .content_form {
+        height: fit-content !important;
+        padding: 1rem 0 !important;
+
+        input {
+            width: 13rem !important;
+        }
+    }
+
+    .login_button {
+        width: 100% !important;
+    }
 }
