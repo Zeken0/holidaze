@@ -17,8 +17,30 @@ import {
 } from "react-icons/io5";
 
 function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+
+  async function sendMessage() {
+    const messageInfo = {
+      name: name,
+      email: email,
+      message: message,
+    };
+
+    const add = await fetch("http://localhost:1337/api/messages", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({data:messageInfo}),
+    });
+
+    const addResponse = await add.json();
+    console.log(addResponse);
+  }
+
   try {
     const formik = useFormik({
       initialValues: {
@@ -26,10 +48,7 @@ function Contact() {
         email: "",
         message: "",
       },
-      onSubmit: () => {
-        setMessage("Message delivered");
-        setSubmitted(true);
-      },
+      onSubmit: () => {},
       validationSchema: yup.object({
         name: yup
           .string()
@@ -114,8 +133,11 @@ function Contact() {
                   name="name"
                   className="form-control"
                   placeholder="Ahmed Jibril"
-                  value={formik.values.full_name}
-                  onChange={formik.handleChange}
+                  value={name}
+                  onChange={(e) => {
+                    formik.handleChange;
+                    setName(e.target.value);
+                  }}
                   onBlur={formik.handleBlur}
                 />
                 {formik.errors.name && (
@@ -132,8 +154,11 @@ function Contact() {
                   name="email"
                   className="form-control"
                   placeholder="Your@example.com"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
+                  value={email}
+                  onChange={(e) => {
+                    formik.handleChange;
+                    setEmail(e.target.value);
+                  }}
                   onBlur={formik.handleBlur}
                 />
                 {formik.errors.email && (
@@ -149,8 +174,11 @@ function Contact() {
                   name="message"
                   className="form-control"
                   placeholder="Your message ..."
-                  value={formik.values.message}
-                  onChange={formik.handleChange}
+                  value={message}
+                  onChange={(e) => {
+                    formik.handleChange;
+                    setMessage(e.target.value);
+                  }}
                   onBlur={formik.handleBlur}
                 />
                 {formik.errors.message && (
@@ -158,7 +186,11 @@ function Contact() {
                 )}
               </div>
 
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={() => sendMessage()}
+              >
                 Send message
               </button>
             </form>

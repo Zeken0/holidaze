@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
-import SearchBar from "../components/SearchBar";
 import styles from "../styles/Home.module.scss";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -22,8 +21,6 @@ export async function getStaticProps() {
     const response = await axios.get("http://localhost:1337/api/hotels");
     const data = await response.data;
 
-    console.log(data);
-
     return {
       props: {
         hotels: data.data,
@@ -40,17 +37,30 @@ export async function getStaticProps() {
 }
 
 export default function Home({ hotels }) {
-  try {
-    function redirectUser(ctx, location) {
-      if (ctx.req) {
-        I;
-        ctx.res.writeHead(302, { Location: location });
-        ctx.res.end();
-      } else {
-        Router.push("/admin");
-      }
-    }
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [question, setQuestion] = useState("");
 
+  async function askQuestion() {
+    const questionInfo = {
+      name: name,
+      email: email,
+      question: question,
+    };
+
+    const ask = await fetch("http://localhost:1337/api/enquiries", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: questionInfo }),
+    });
+
+    const askResponse = await ask.json();
+  }
+
+  try {
     const router = useRouter();
 
     const handleOnClick = (hotelName) => {
@@ -288,8 +298,11 @@ export default function Home({ hotels }) {
                       name="name"
                       className="form-control"
                       placeholder="Ahmed Jibril"
-                      value={formik.values.full_name}
-                      onChange={formik.handleChange}
+                      value={name}
+                      onChange={(e) => {
+                        formik.handleChange;
+                        setName(e.target.value);
+                      }}
                       onBlur={formik.handleBlur}
                     />
                     {formik.errors.name && (
@@ -306,8 +319,11 @@ export default function Home({ hotels }) {
                       name="email"
                       className="form-control"
                       placeholder="Your@example.com"
-                      value={formik.values.email}
-                      onChange={formik.handleChange}
+                      value={email}
+                      onChange={(e) => {
+                        formik.handleChange;
+                        setEmail(e.target.value);
+                      }}
                       onBlur={formik.handleBlur}
                     />
                     {formik.errors.email && (
@@ -323,8 +339,11 @@ export default function Home({ hotels }) {
                       name="question"
                       className="form-control"
                       placeholder="Your question ..."
-                      value={formik.values.question}
-                      onChange={formik.handleChange}
+                      value={question}
+                      onChange={(e) => {
+                        formik.handleChange;
+                        setQuestion(e.target.value);
+                      }}
                       onBlur={formik.handleBlur}
                     />
                     {formik.errors.question && (
@@ -334,7 +353,11 @@ export default function Home({ hotels }) {
                     )}
                   </div>
 
-                  <button type="submit" className={styles.enquiry_btn}>
+                  <button
+                    type="submit"
+                    className={styles.enquiry_btn}
+                    onClick={() => askQuestion()}
+                  >
                     Send
                   </button>
                 </form>
