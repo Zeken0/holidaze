@@ -1,13 +1,78 @@
 .add_container {
 
     .add_main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         border: solid 1px red;
         height: 100vh;
         width: 90%;
         margin: 2.5rem auto ;
+
+        .add_form_section {
+            display: flex;
+            flex-direction: column;
+            border: solid 1px green;
+            height: 100%;
+            width: 100%;
+            row-gap: 2rem;
+            
+            h1 {
+                font-family: $secondary-font;
+            }
+
+            .add_form {
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: 3rem;
+                row-gap: 1.5rem;
+
+                .form_control {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 0.5rem;
+
+                    .form_label {
+                        font-weight: 400;
+                    }
+
+                    .form_input {
+                        padding: 0 0.5rem;
+                        width: 17rem;
+                        height: 2.3rem;
+                        font-size: 1rem;
+                    }
+                }
+
+                .form_button {
+                    @include button_styiling;
+                    width: 10rem;
+                    height: 3rem;
+                    border-radius: 0.25rem;
+                }
+
+                .form_button:hover {
+                    @include button_hover;
+                }
+            }
+        }
+
+        .add_image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: solid 1px violet;
+            height: 100%;
+            width: 100%;
+        }
     }
 }
 
 @media (max-width: 1112px) {}
 
-@media (max-width: 767px) {}
+@media (max-width: 767px) {
+
+    .add_main {
+        flex-direction: column-reverse;
+    }
+}
