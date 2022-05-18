@@ -10,7 +10,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useRouter, Router } from "next/router";
 import { Notification, Select } from "@mantine/core";
 import { X, Search, ChevronDown } from "tabler-icons-react";
 import Slider from "react-slick";
@@ -41,6 +41,16 @@ export async function getStaticProps() {
 
 export default function Home({ hotels }) {
   try {
+    function redirectUser(ctx, location) {
+      if (ctx.req) {
+        I;
+        ctx.res.writeHead(302, { Location: location });
+        ctx.res.end();
+      } else {
+        Router.push("/admin");
+      }
+    }
+
     const router = useRouter();
 
     const handleOnClick = (hotelName) => {

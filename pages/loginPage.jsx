@@ -7,42 +7,62 @@ import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
 import { useRouter } from "next/router";
+import {setCookie} from 'nookies'
 
 function LoginPage() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  async function handleLogin() {
 
-    const credentials = { username, password };
+    try {
+      
+      const loginInfo = {
+        identifier: email,
+        password: password
+      }
+  
+      const login = await fetch(
+        "http://localhost:1337/api/auth/local", {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(loginInfo)
+        });
+        const loginResponse = await login.json();
+  
+        setCookie(null, 'jwt', loginResponse.jwt, {
+          maxAge: 30 * 24 * 60 * 60,
+          path: '/',
+        })
+        console.log(loginResponse);
 
-    const user = await axios.post(
-      "http://localhost:1337/auth/login",
-      credentials
-    );
+        if (login.status === 200) {
+          router.push("/admin");
+        }
 
-    if (user.status === 200) {
-      router.push("/admin");
+    } catch (error) {
+      console.log(error);
     }
-  };
+  
+  }  
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: () => {},
     validationSchema: yup.object({
       password: yup
         .string()
         .trim()
-        .min(2, "Too Short!")
-        .max(20, "Too Long!")
+        .min(8, "Too Short!")
+        .max(9, "Too Long!")
         .required("Password is required"),
       email: yup
         .string()
@@ -80,9 +100,12 @@ function LoginPage() {
                   name="email"
                   className="form-control"
                   placeholder="admin@admin.com"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
+                  value={email}
+                  onChange={e => {
+                    formik.handleChange,
+                    setEmail(e.target.value)}
+                  }  
+                  
                 />
                 {formik.errors.email && (
                   <div className="text-danger">{formik.errors.email}</div>
@@ -97,17 +120,20 @@ function LoginPage() {
                   type="text"
                   name="password"
                   className="form-control"
-                  placeholder="Admin1234"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
+                  placeholder="Pass1234"
+                  value={password}
+                  onChange={e => {
+                    formik.handleChange,
+                    setPassword(e.target.value)}
+                  }  
+                  
                 />
                 {formik.errors.password && (
                   <div className="text-danger">{formik.errors.password}</div>
                 )}
               </div>
 
-              <button type="submit" className={styles.login_button}>
+              <button type="submit" className={styles.login_button} onClick={() => handleLogin()}>
                 Login
               </button>
             </form>
