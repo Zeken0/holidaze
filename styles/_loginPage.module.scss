@@ -15,7 +15,7 @@
             
         }
         .main_content {
-            border-radius: 1.5rem 1.5rem 0rem 1.5rem;
+            border-radius: 35rem 0rem 35rem 35rem;
             background-color: $secondary-color;
             row-gap: 2rem;
             display: flex;
@@ -23,6 +23,7 @@
             justify-content: center;
             height: 100%;
             width: 100%;
+            
 
             .content_form {
                 background-color:$white-color;
@@ -34,7 +35,8 @@
                 margin: auto;
                 align-items: center;
                 justify-content: center;
-                border-radius: 1.5rem 1.5rem 0rem 1.5rem;
+                border-radius: 10rem 0rem 10rem 0rem;
+                box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.14);
 
                 input {
                     width: 20rem ;
@@ -62,7 +64,7 @@
 
     .login_main {
         height: 100vh !important;
-        flex-direction: column;
+        flex-direction: column-reverse;
         width: 80% !important;
     }
 
@@ -81,17 +83,19 @@
 @media (max-width: 767px) {
 
     .login_main {
-        height: 100vh !important;
+        height: fit-content !important;
         justify-content: space-around;
         flex-direction: column;
         width: 90% !important;
     }
 
     .main_content {
+        border-radius: 0rem 0rem 35rem 35rem !important;
         padding: 1.5rem 0;
     }
 
     .content_form {
+        border-radius: 0rem 0rem 4rem 4rem !important;
         height: fit-content !important;
         padding: 1rem 0 !important;
 

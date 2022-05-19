@@ -7,11 +7,14 @@ import { Tabs, createStyles, Table, ScrollArea } from "@mantine/core";
 import { MessageCircle } from "tabler-icons-react";
 import axios from "axios";
 import Link from "next/link";
-
+import { parseCookies } from "nookies";
+import { useRouter } from "next/router";
 
 export default function Admin() {
   const [messages, setMessages] = useState([]);
   const [enquiries, setEnquiries] = useState([]);
+
+  const router = useRouter();
 
   const fetchData = () => {
     const getMessages = axios.get("http://localhost:1337/api/messages");
@@ -30,6 +33,11 @@ export default function Admin() {
   };
 
   useEffect(() => {
+    const jwt = parseCookies().jwt;
+
+    if (jwt === "null" || "undefined") {
+      router.push("/loginPage");
+    }
     fetchData();
   }, []);
 

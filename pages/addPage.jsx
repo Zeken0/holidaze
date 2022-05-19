@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import Image from "next/image";
 import {parseCookies} from 'nookies'
+import { useRouter } from "next/router";
 
 function AddPage() {
   const [name, setName] = useState("");
@@ -16,10 +17,16 @@ function AddPage() {
   const [imageThree, setImageThree] = useState("");
   const [imageFour, setImageFour] = useState("");
 
+
+  const jwt = parseCookies().jwt
+  // const router = useRouter();
+
+  // if (jwt === "null" || "undefined") {
+  //   router.push("/loginPage");
+  // }
+
   async function addHotel() {
-
-    const jwt = parseCookies().jwt
-
+    
     const hotelInfo = {
       name: name,
       location: location,
@@ -86,6 +93,19 @@ function AddPage() {
                 className={styles.form_input}
               />
             </div>
+              <div className={styles.form_control}>
+                <label htmlFor="about" className={styles.form_label}>
+                  About
+                </label>
+                <textarea
+                  type="text"
+                  name="about"
+                  placeholder="Write something"
+                  value={about}
+                  onChange={(e) => {setAbout(e.target.value);}}
+                  className={styles.form_input_about}
+                />
+              </div>
             <div className={styles.form_control}>
               <label htmlFor="price" className={styles.form_label}>
                 Price
@@ -93,23 +113,10 @@ function AddPage() {
               <input
                 type="number"
                 name="price"
-                placeholder="599,99"
+                placeholder="599,99 kr"
                 value={price}
                 onChange={(e) => {setPrice(e.target.value);}}
-                className={styles.form_input}
-              />
-            </div>
-            <div className={styles.form_control}>
-              <label htmlFor="about" className={styles.form_label}>
-                About
-              </label>
-              <textarea
-                type="text"
-                name="about"
-                placeholder="Write something"
-                value={about}
-                onChange={(e) => {setAbout(e.target.value);}}
-                className={styles.form_input}
+                className={styles.form_input_price}
               />
             </div>
             <div className={styles.form_control}>
