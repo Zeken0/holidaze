@@ -1,36 +1,41 @@
 .admin_container {
-    width: 90%;
-    margin: auto;
     height: 100vh;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
 
-    .admin_action {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-
-        h1 {
-            font-family: $secondary-font;
-            font-size: 2.5rem
-        }
-
-        .add_button {
-            @include button_styiling;
-            width: 11rem;
-            height: 3rem;
-            border-radius: 0.3rem;
+    .admin_main {
+        width: 90%;
+        margin: auto;
+        height: 100%;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+    
+        .admin_action {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+    
+            h1 {
+                font-family: $secondary-font;
+                font-size: 2.5rem
+            }
+    
+            .add_button {
+                @include button_styiling;
+                width: 11rem;
+                height: 3rem;
+                border-radius: 0.3rem;
+            }
+        
+            .add_button:hover {
+                @include button_hover;
+            }
         }
     
-        .add_button:hover {
-            @include button_hover;
+        .admin_tabs{
+            margin-top: 2rem;
         }
     }
-
-    .admin_tabs{
-        margin-top: 2rem;
-    }
 }
+
 
 /* ----------------------------------------------------- Tablet -------------------------------------------- */
 @media (max-width: 1112px) {

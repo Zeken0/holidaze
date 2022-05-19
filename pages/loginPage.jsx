@@ -39,6 +39,7 @@ function LoginPage() {
       });
       console.log(loginResponse);
 
+
       if (login.status === 200) {
         router.push("/admin");
       }
@@ -110,7 +111,7 @@ function LoginPage() {
                   Password
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   className="form-control"
                   placeholder="Pass1234"
