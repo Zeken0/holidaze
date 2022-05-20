@@ -123,12 +123,6 @@
                     }
 
                 }
-                .info_action {
-                    border: solid 1px red;
-                    display: flex;
-                    flex-direction: column;
-                    
-                }
 
                 .item_button {
                     margin-top: 1.5rem;
@@ -149,9 +143,91 @@
 /* ----------------------------------------------------- Tablet -------------------------------------------- */
 @media (max-width: 1112px) {
 
+    .content_item {
+        flex-direction: column;
+        height: fit-content !important;
+        width: 100%!important;
+        padding: 0rem !important;
+
+        img {
+            width: 100% !important;
+        }
+    }
+
+    .explore_filter {
+        width: 50% !important;
+    }
+
+    .item_info {
+        flex-direction: row !important;
+        width: 95% !important;
+        margin: auto;
+        justify-content: space-between;
+
+        h3 {
+            width: 80% !important;
+        }
+
+        span {
+            width: 70%;
+        }
+    }
+
+    .item_info_action {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center !important;
+        width: 95%;
+        margin: auto;
+
+        button {
+            margin-top: 0rem !important;
+        }
+    }
+
 }
 
 /* ----------------------------------------------------- Mobile -------------------------------------------- */
 @media (max-width: 767px) {
+
+    .explore_container {
+        width: 100% !important;
+    }
+
+    .explore_content {
+        row-gap: 3rem !important;
+    }
+
+
+    .explore_actions {
+        flex-direction: column;
+
+        input {
+            width: 19rem !important;
+        }
+    }
+
+    .explore_filter {
+        display: none !important;
+    }
+
+    .item_info {
+        
+        h3 {
+            width: 80% !important;
+        }
+
+        span {
+            width: 70%;
+        }
+    }
+
+    .item_info_action {
+
+        button {
+            width: 10rem !important;
+        }
+    }
 
 }
