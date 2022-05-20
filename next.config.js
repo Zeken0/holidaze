@@ -2,7 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["dynamic-media-cdn.tripadvisor.com", "images.unsplash.com"],
+    domains: [
+      "dynamic-media-cdn.tripadvisor.com",
+      "images.unsplash.com",
+      "www.booking.com",
+      "swiperjs.com",
+    ],
   },
 };
 

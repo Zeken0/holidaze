@@ -1,0 +1,63 @@
+.details_container {
+    height: 100vh;
+
+    .details_main {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        border: solid 1px green;
+        width: 90%;
+        margin: 2.5rem auto;
+        height: 100%;
+
+        .details_actions {
+            border: solid 1px violet;
+            height: 100%;
+            display:  flex;
+            justify-content: space-around;
+
+            .actions_left {
+                border: solid navy 1px;
+                width: 30%;
+
+                .actions_datePicker_container {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 0.5rem;
+                    border: solid 1px red;
+                    height: 400px;
+
+                    .actions_datePicker {
+                        font-family: $primary-font;
+
+                        label {
+                            font-size: 0.8rem;
+                        }
+
+                        input {
+                            font-family: $primary-font;
+                            font-size: 1rem;
+                        }
+
+                        svg {
+                            color: $black-color;
+                        }
+
+                        &:focus {
+                            border-color: solid 1px black !important;
+                            
+                        }
+                    }
+                }
+
+            }
+
+            .actions_right {
+                border: solid gray 1px;
+                width: 100%;
+
+                
+            }
+        }
+    }
+}

@@ -191,7 +191,7 @@ function Explore({ hotels }) {
                     </ul>
                   </div>
                   <div className={styles.item_info_action}>
-                    <h2>From {hotel.attributes.price} kr</h2>
+                    <h2>From {hotel.attributes.price} NOK</h2>
                     <Link href={"/explore/" + hotel.id} key={hotel.id}>
                       <button className={styles.item_button}>View more</button>
                     </Link>
