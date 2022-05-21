@@ -9,6 +9,8 @@ const nextConfig = {
       "swiperjs.com",
     ],
   },
+
+  presets: ["next/babel"],
 };
 
 module.exports = nextConfig;
