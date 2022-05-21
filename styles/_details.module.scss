@@ -5,6 +5,7 @@
         display: flex;
         flex-direction: column;
         width: 90%;
+        row-gap: 1rem;
         margin: 2.5rem auto;
         height: 100%;
 
@@ -15,7 +16,8 @@
             justify-content: space-around;
 
             .actions_left {
-                box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.14);
+                border-radius: 0.25rem;
+                box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.16);
                 width: 30%;
                 height: fit-content;
 
@@ -90,11 +92,79 @@
             }
 
             .actions_right {
-                border: solid red 1px;
+                padding: 1rem;
+                border-radius: 0.25rem;
                 width: 100%;
+                box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.16);
 
-                
+                .actions_info {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 0.4rem;
+
+                    span {
+                        font-style: italic;
+                        display: flex;
+                        align-items: center;
+                        column-gap: 0.2rem;
+                    }
+
+                    svg {
+                        width: 1.1rem;
+                        color: $secondary-color;
+                    }
+
+                    h1 {
+                        font-family: $secondary-font !important;
+                        font-weight: 600 !important;
+                        margin: 0 !important;
+                    }
+                }
             }
         }
+
+        .details_info {
+            padding: 1rem;
+            border-radius: 0.25rem;
+            height: 100%;
+            box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.16);
+        }
+    }
+}
+
+/* ----------------------------------------------------- Tablet -------------------------------------------- */
+@media (max-width: 1112px) {
+
+    .actions_left {
+        width: 50% !important;
+    }
+
+    .actions_accommodation {
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        row-gap: 0.5rem !important;
+    }
+}
+
+
+/* ----------------------------------------------------- Mobile -------------------------------------------- */
+@media (max-width: 767px) {
+
+    .details_main {
+        row-gap: 1.5rem !important;
+    }
+
+    .details_actions {
+        flex-direction: column-reverse !important;
+        row-gap: 1.5rem;
+    }
+
+    .actions_left {
+        width: 100% !important;
+    }
+
+    .actions_accommodation {
+        justify-content: space-between !important;
+        column-gap: unset !important;
     }
 }

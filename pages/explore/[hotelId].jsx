@@ -4,7 +4,7 @@ import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import styles from "../../styles/Home.module.scss";
-import { Bed, Calendar, ChevronDown, MoodKid, User } from "tabler-icons-react";
+import { Bed, Calendar, ChevronDown, MoodKid, User, MapPin } from "tabler-icons-react";
 import axios from "axios";
 import { DatePicker } from "@mantine/dates";
 import { Checkbox, Select } from "@mantine/core";
@@ -134,10 +134,17 @@ function Details({ hotel }) {
             </div>
           </div>
           <div className={styles.actions_right}>
-            <h1>{hotel.attributes?.name}</h1>
+
+            <div className={styles.actions_info}>
+              <h1>{hotel.attributes?.name}</h1>
+              <span>{<MapPin/>}{hotel.attributes?.location}</span>
+            </div>
+
           </div>
         </div>
-        <div className={styles.details_info}></div>
+        <div className={styles.details_info}>
+          <h2>About</h2>
+        </div>
       </main>
       <Footer />
     </div>

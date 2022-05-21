@@ -6,9 +6,9 @@
 @import "_contact.module.scss";
 @import "_admin.module.scss";
 @import "_explore.module.scss";
-@import "loginPage.module.scss";
-@import "addPage.module.scss";
-@import "details.module.scss";
+@import "_loginPage.module.scss";
+@import "_addPage.module.scss";
+@import "_details.module.scss";
 
 .home_container {
   
@@ -42,16 +42,19 @@
         font-size: 1.2rem;
         padding-right: 1rem;
         box-shadow: 1px 2px 12px 3px rgba(0, 0, 0, 0.14);
+
         &:focus {
           outline: none;
+          
           &::placeholder {
-          opacity: 0;
-      }
-      }
-      &::placeholder {
+            opacity: 0;
+          }
+        }
+        
+        &::placeholder {
           color: $quaternary-color;
           transition: all 250ms ease-in-out;
-      }
+        }
 
         .mantine-Select-rightSection {
           display: none;
@@ -62,7 +65,7 @@
     .intro_text {
       font-family: $secondary-font;
       font-size: 40px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .home_featuredContainer, .home_popularContainer {
@@ -75,6 +78,7 @@
 
       h1 {
         font-family: $secondary-font;
+        font-weight: 600;
       }
 
       .home_featuredItem, .home_popularItem {
