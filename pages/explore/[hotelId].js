@@ -4,9 +4,10 @@ import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import styles from "../../styles/Home.module.scss";
-import { Calendar } from "tabler-icons-react";
+import { Bed, Calendar, ChevronDown, MoodKid, User } from "tabler-icons-react";
 import axios from "axios";
 import { DatePicker } from "@mantine/dates";
+import { Checkbox, Select } from "@mantine/core";
 
 export const getStaticPaths = async () => {
   let paths = [];
@@ -47,6 +48,10 @@ export const getStaticProps = async (context) => {
 };
 
 function Details({ hotel }) {
+  const data = Array(51)
+    .fill(0)
+    .map((_, index) => ` ${index}`);
+
   return (
     <div className={styles.details_container}>
       <Head>
@@ -61,7 +66,7 @@ function Details({ hotel }) {
       <main className={styles.details_main}>
         <div className={styles.details_actions}>
           <div className={styles.actions_left}>
-            <div className={styles.actions_datePicker_container}>
+            <div className={styles.actions_filter_container}>
               <DatePicker
                 placeholder="Pick date"
                 label="Check-in date"
@@ -69,6 +74,7 @@ function Details({ hotel }) {
                 icon={<Calendar size={16} />}
                 className={styles.actions_datePicker}
               />
+
               <DatePicker
                 placeholder="Pick date"
                 label="Check-out date"
@@ -76,6 +82,55 @@ function Details({ hotel }) {
                 icon={<Calendar size={16} />}
                 className={styles.actions_datePicker}
               />
+
+              <div className={styles.actions_accommodation}>
+                <Select
+                  label="Rooms"
+                  placeholder="Select"
+                  searchable
+                  clearable
+                  nothingFound="No options"
+                  maxDropdownHeight={115}
+                  data={data}
+                  icon={<Bed size={18} />}
+                  rightSection={<ChevronDown size={14} />}
+                  rightSectionWidth={0}
+                />
+
+                <Select
+                  label="Adults"
+                  placeholder="Select"
+                  searchable
+                  clearable
+                  nothingFound="No options"
+                  maxDropdownHeight={115}
+                  data={data}
+                  icon={<User size={18} />}
+                  rightSection={<ChevronDown size={14} />}
+                  rightSectionWidth={0}
+                />
+
+                <Select
+                  label="Kids"
+                  placeholder="Select"
+                  searchable
+                  clearable
+                  nothingFound="No options"
+                  maxDropdownHeight={115}
+                  data={data}
+                  icon={<MoodKid size={18} />}
+                  rightSection={<ChevronDown size={14} />}
+                  rightSectionWidth={0}
+                />
+              </div>
+
+              <Checkbox
+                label="I'm travelling for work"
+                color="red"
+                radius="xs"
+              />
+
+              <button className={styles.actions_filter_button}>Search</button>
             </div>
           </div>
           <div className={styles.actions_right}>
