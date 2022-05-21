@@ -44,14 +44,6 @@ export default function Admin() {
     fetchData();
   }, []);
 
-  const rows = enquiries.map((enquiry) => (
-    <tr key={enquiry.id}>
-      <td>{enquiry.name}</td>
-      <td>{enquiry.email}</td>
-      <td>{enquiry.question}</td>
-    </tr>
-  ));
-
   return (
     <div className={styles.admin_container}>
       <Head>

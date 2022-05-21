@@ -9,7 +9,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { useRouter, Router } from "next/router";
+import { useRouter } from "next/router";
 import { Notification, Select } from "@mantine/core";
 import { X, Search, ChevronDown } from "tabler-icons-react";
 import Slider from "react-slick";
@@ -40,6 +40,33 @@ export default function Home({ hotels }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [question, setQuestion] = useState("");
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      question: "",
+      emailTwo: "",
+    },
+    validationSchema: yup.object({
+      name: yup
+        .string()
+        .trim()
+        .min(2, "Too Short!")
+        .max(20, "Too Long!")
+        .required("Name is required"),
+      email: yup
+        .string()
+        .email("Must be a valid email")
+        .required("Email is required"),
+      question: yup
+        .string()
+        .trim()
+        .min(10, "Too Short!")
+        .required("Question is required"),
+      emailTwo: yup.string().email("Must be a valid email"),
+    }),
+  });
 
   async function askQuestion() {
     const questionInfo = {
@@ -112,33 +139,6 @@ export default function Home({ hotels }) {
         },
       ],
     };
-
-    const formik = useFormik({
-      initialValues: {
-        name: "",
-        email: "",
-        question: "",
-        emailTwo: "",
-      },
-      validationSchema: yup.object({
-        name: yup
-          .string()
-          .trim()
-          .min(2, "Too Short!")
-          .max(20, "Too Long!")
-          .required("Name is required"),
-        email: yup
-          .string()
-          .email("Must be a valid email")
-          .required("Email is required"),
-        question: yup
-          .string()
-          .trim()
-          .min(10, "Too Short!")
-          .required("Question is required"),
-        emailTwo: yup.string().email("Must be a valid email"),
-      }),
-    });
 
     return (
       <div className={styles.home_container}>
