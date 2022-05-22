@@ -62,21 +62,77 @@ export default function Admin() {
         <div className={styles.admin_tabs}>
           <Tabs tabPadding="xl" color="orange" position="apart">
             <Tabs.Tab label="All">
-              {enquiries.map((enquiry) => {
-                return <h2 key={enquiry.id}>{enquiry.attributes.question}</h2>;
-              })}
+            <div className={styles.admin_users_container}>
+                {enquiries.map((enquiry) => {
+                  return <div className={styles.admin_user} key={enquiry.id}>
+
+                        <div className={styles.user_name}>
+                          <h3>Name:</h3>
+                          <span>{enquiry.attributes.name}</span>
+                        </div>
+
+                        <div className={styles.user_email}>
+                          <h3>Email:</h3>
+                          <span>{enquiry.attributes.email}</span>
+                        </div>
+
+                        <div className={styles.user_question}>
+                          <h3>Question:</h3>
+                          <p>
+                            {enquiry.attributes.question}
+                          </p>
+                        </div>
+                  </div>;
+                })}
+
               {messages.map((message) => {
-                return <h2 key={message.id}>{message.attributes.message}</h2>;
+                return <div className={styles.admin_user} key={message.id}>
+
+                      <div className={styles.user_name}>
+                        <h3>Name:</h3>
+                        <span>{message.attributes.name}</span>
+                      </div>
+
+                      <div className={styles.user_email}>
+                        <h3>Email:</h3>
+                        <span>{message.attributes.email}</span>
+                      </div>
+
+                      <div className={styles.user_message}>
+                        <h3>Message:</h3>
+                        <p>
+                          {message.attributes.message}
+                        </p>
+                      </div>
+                </div>;
               })}
+              </div>
             </Tabs.Tab>
 
             <Tabs.Tab label="Enquiries" icon={<MessageCircle size={17} />}>
-              {enquiries.map((enquiry) => {
-                return ( <div key={enquiry.id}>
-                  <h2 key={enquiry.id}>{enquiry.attributes.question}</h2>
-                </div>
-                )
-              })}
+              <div className={styles.admin_users_container}>
+                {enquiries.map((enquiry) => {
+                  return <div className={styles.admin_user} key={enquiry.id}>
+
+                        <div className={styles.user_name}>
+                          <h3>Name:</h3>
+                          <span>{enquiry.attributes.name}</span>
+                        </div>
+
+                        <div className={styles.user_email}>
+                          <h3>Email:</h3>
+                          <span>{enquiry.attributes.email}</span>
+                        </div>
+
+                        <div className={styles.user_question}>
+                          <h3>Question:</h3>
+                          <p>
+                            {enquiry.attributes.question}
+                          </p>
+                        </div>
+                  </div>;
+                })}
+              </div>
             </Tabs.Tab>
 
             <Tabs.Tab label="Messages" icon={<MessageCircle size={17} />}>
@@ -100,7 +156,6 @@ export default function Admin() {
                         <p>
                           {message.attributes.message}
                         </p>
-                        
                       </div>
                 </div>;
               })}
