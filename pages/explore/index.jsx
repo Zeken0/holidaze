@@ -166,7 +166,7 @@ function Explore({ hotels }) {
                     alt="Image of a hotel"
                   />
                   <div className={styles.item_info}>
-                    <div>
+                    <div className={styles.item_info_top}>
                       <Link href={"/explore/" + hotel.id} key={hotel.id}>
                         <h3>{hotel.attributes.name}</h3>
                       </Link>
