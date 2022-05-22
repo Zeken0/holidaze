@@ -4,10 +4,11 @@ import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import styles from "../../styles/Home.module.scss";
-import { Bed, Calendar, ChevronDown, MoodKid, User, MapPin } from "tabler-icons-react";
+import { Bed, Calendar, ChevronDown, MoodKid, User, MapPin, Wifi, ToolsKitchen, Briefcase, Parking, Windmill, ShieldLock, Snowflake, DeviceTv, SmokingNo } from "tabler-icons-react";
 import axios from "axios";
 import { DatePicker } from "@mantine/dates";
 import { Checkbox, Select } from "@mantine/core";
+import { SmokeFree } from "@mui/icons-material";
 
 export const getStaticPaths = async () => {
   let paths = [];
@@ -23,7 +24,6 @@ export const getStaticPaths = async () => {
   } catch (error) {
     console.warn("failed to fetch hotess");
   }
-  console.log("paths", paths);
 
   return {
     paths: paths,
@@ -142,8 +142,44 @@ function Details({ hotel }) {
 
           </div>
         </div>
-        <div className={styles.details_info}>
+        <div className={styles.details_info_container}>
           <h2>About</h2>
+          <div className={styles.lineSeperator}></div>
+          <div className={styles.details_info}>
+            <p>{hotel.attributes?.about}</p>
+            <div className={styles.info_accommodation}>
+
+              <div className={styles.info_accommodation_content}>
+                <h3>Property amenities</h3>
+                <div className={styles.accommodation_content_item}>
+                  <span><Wifi/> Free High Speed Internet (WiFi)</span>
+                  <span><ToolsKitchen/> Free breakfast</span>
+                  <span><Briefcase/> Baggage storage</span>
+                  <span><Parking/> Paid private parking nearby</span>
+                </div>
+              </div>
+
+              <div className={styles.info_accommodation_content}>
+                <h3>Room features</h3>
+                <div className={styles.accommodation_content_item}>
+                  <span><Windmill/> Air conditioning</span>
+                  <span><ShieldLock/> Safe</span>
+                  <span><Snowflake/> Refrigerator</span>
+                  <span><DeviceTv/> Flatscreen TV</span>
+                </div>
+              </div>
+
+              <div className={styles.info_accommodation_content}>
+                <h3>Room types</h3>
+                <div className={styles.accommodation_content_item}>
+                  <span><SmokingNo/> Non-smoking rooms</span>
+                  <span><Bed/> Suites</span>
+                  <span><Bed/> Family rooms</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </main>
       <Footer />
