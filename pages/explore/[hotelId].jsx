@@ -4,7 +4,7 @@ import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import styles from "../../styles/Home.module.scss";
-import { Bed, Calendar, ChevronDown, MoodKid, User, MapPin, Wifi, ToolsKitchen, Briefcase, Parking, Windmill, ShieldLock, Snowflake, DeviceTv, SmokingNo } from "tabler-icons-react";
+import { Bed, Calendar, ChevronDown, MoodKid, User, MapPin, Wifi, ToolsKitchen, Briefcase, Parking, Windmill, ShieldLock, Snowflake, DeviceTv, SmokingNo, Coffee } from "tabler-icons-react";
 import axios from "axios";
 import { DatePicker } from "@mantine/dates";
 import { Checkbox, Select } from "@mantine/core";
@@ -134,12 +134,21 @@ function Details({ hotel }) {
             </div>
           </div>
           <div className={styles.actions_right}>
-
-            <div className={styles.actions_info}>
-              <h1>{hotel.attributes?.name}</h1>
-              <span>{<MapPin/>}{hotel.attributes?.location}</span>
+            <div className={styles.actions_right_top}>
+              <div className={styles.actions_info}>
+                <h1>{hotel.attributes?.name}</h1>
+                <span>{<MapPin/>}{hotel.attributes?.location}</span>
+              </div>
+              <button>Reserve</button>
             </div>
-
+            <div className={styles.actions_gallary}>
+              <Image src={"https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlZXxlbnwwfHwwfHw%3D&w=1000&q=80"} 
+              alt={""} 
+              height={0} 
+              width={0}
+              layout="responsive"
+              />
+            </div>
           </div>
         </div>
         <div className={styles.details_info_container}>
@@ -153,7 +162,7 @@ function Details({ hotel }) {
                 <h3>Property amenities</h3>
                 <div className={styles.accommodation_content_item}>
                   <span><Wifi/> Free High Speed Internet (WiFi)</span>
-                  <span><ToolsKitchen/> Free breakfast</span>
+                  <span><Coffee/> Free breakfast</span>
                   <span><Briefcase/> Baggage storage</span>
                   <span><Parking/> Paid private parking nearby</span>
                 </div>

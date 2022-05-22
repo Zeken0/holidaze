@@ -4,7 +4,7 @@
     .admin_main {
         width: 90%;
         margin: auto;
-        height: 100%;
+        height: fit-content;
         margin-top: 2.5rem;
         margin-bottom: 2.5rem;
     
@@ -15,7 +15,8 @@
     
             h1 {
                 font-family: $secondary-font;
-                font-size: 2.5rem
+                font-size: 2.5rem;
+                font-weight: 600
             }
     
             .add_button {
@@ -30,10 +31,80 @@
             }
         }
     
-        .admin_tabs{
-            margin-top: 2rem;
+        .admin_users_container{
+            
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 1rem;
+            column-gap: 1rem;
+
+            .admin_user {
+                display: flex;
+                flex-direction: column;
+                row-gap: 2rem;
+                box-shadow: 1px 2px 4px 1px rgba(0,0,0,0.16);
+                height: 300px;
+                width: 350px;
+                padding: 1rem;
+                border-radius: 0.25rem; 
+
+                .user_name {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 1rem;
+                    row-gap: 0.5rem;
+                    border-bottom:solid 1px $tertiary-color ;
+
+                    h3 {
+                        margin: 0;
+                        font-weight: 600;
+                    }
+
+                    span {
+                        font-weight: 400;
+                    }
+                }
+
+                .user_email {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 1rem;
+                    row-gap: 0.5rem;
+                    border-bottom:solid 1px $tertiary-color ;
+
+                    h3 {
+                        margin: 0;
+                        font-weight: 600;
+                    }
+
+                    span {
+                        font-weight: 400;
+                    }
+                }
+
+                .user_message {
+                    display: flex;
+                    flex-direction: column;
+                    column-gap: 1rem;
+                    row-gap: 0.7rem;
+                    border-bottom:solid 1px $tertiary-color ;
+
+                    h3 {
+                        margin: 0;
+                        font-weight: 600;
+                    }
+
+                    p {
+                        border: solid red 1px;
+                        font-weight: 400;
+                    }
+                }
+            }
         }
     }
+
+    
 }
 
 
