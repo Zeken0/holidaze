@@ -61,7 +61,6 @@ function Explore({ hotels }) {
           name="description"
           content="This is the explore page to the hotel booking site Holidaze"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
       <main className={styles.explore_container}>

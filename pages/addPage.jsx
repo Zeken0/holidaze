@@ -6,6 +6,9 @@ import styles from "../styles/Home.module.scss";
 import Image from "next/image";
 import {parseCookies} from 'nookies'
 import { useRouter } from "next/router";
+import { useForm } from 'react-hook-form';
+import { Notification } from '@mantine/core';
+import { Check, X } from 'tabler-icons-react';
 
 function AddPage() {
   const [name, setName] = useState("");
@@ -52,6 +55,13 @@ function AddPage() {
     console.log(addResponse);
   }
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+
   return (
     <div className={styles.add_container}>
       <Head>
@@ -66,7 +76,10 @@ function AddPage() {
       <main className={styles.add_main}>
         <div className={styles.add_form_section}>
           <h1>Add establishment</h1>
-          <form className={styles.add_form} onSubmit={(e) => {e.preventDefault()}}>
+          <form className={styles.add_form} onSubmit={(e) => {
+            addHotel()
+            e.preventDefault()
+            }}>
             <div className={styles.form_control}>
               <label htmlFor="name" className={styles.form_label}>
                 Name
@@ -74,7 +87,8 @@ function AddPage() {
               <input
                 type="text"
                 name="name"
-                placeholder="Ahmed"
+                placeholder="Hotel name"
+
                 value={name}
                 onChange={(e) => {setName(e.target.value);}}
                 className={styles.form_input}
@@ -88,6 +102,7 @@ function AddPage() {
                 type="text"
                 name="location"
                 placeholder="Somewhere land 26a"
+                
                 value={location}
                 onChange={(e) => {setLocation(e.target.value);}}
                 className={styles.form_input}
@@ -113,7 +128,7 @@ function AddPage() {
               <input
                 type="number"
                 name="price"
-                placeholder="599,99 kr"
+                placeholder="299,99 kr"
                 value={price}
                 onChange={(e) => {setPrice(e.target.value);}}
                 className={styles.form_input_price}
@@ -171,7 +186,7 @@ function AddPage() {
                 className={styles.form_input}
               />
             </div>
-            <button type="submit" className={styles.form_button} onClick={() => addHotel()}
+            <button type="submit" className={styles.form_button}
               >Submit</button>
           </form>
         </div>
