@@ -214,6 +214,10 @@
         display: flex;
         flex-direction: row;
 
+        textarea {
+          height: 7rem
+        } 
+
         .enquiry_btn {
           @include button_styiling;
           border-radius: 0.25rem;

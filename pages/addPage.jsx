@@ -187,7 +187,8 @@ function AddPage() {
               />
             </div>
             <button type="submit" className={styles.form_button}
-              >Submit</button>
+              >Submit
+            </button>
           </form>
         </div>
         <div className={styles.add_image}>

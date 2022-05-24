@@ -158,12 +158,15 @@ function Explore({ hotels }) {
             {hotels.map((hotel) => {
               return (
                 <div className={styles.content_item} key={hotel.id}>
-                  <Image
-                    src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlZXxlbnwwfHwwfHw%3D&w=1000&q=80"
-                    height={200}
-                    width={400}
-                    alt="Image of a hotel"
-                  />
+                  <Link href={"/explore/" + hotel.id} key={hotel.id}>      
+                    <Image
+                      src={hotel.attributes?.image_one}
+                      height={352}
+                      width={450}
+                    
+                      alt="Image of a hotel"
+                    />
+                  </Link>
                   <div className={styles.item_info}>
                     <div className={styles.item_info_top}>
                       <Link href={"/explore/" + hotel.id} key={hotel.id}>

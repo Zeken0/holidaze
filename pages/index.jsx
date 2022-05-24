@@ -184,9 +184,9 @@ export default function Home({ hotels }) {
                     <Link href={"/explore/" + hotel.id} key={hotel.id}>
                       <div className={styles.home_featuredItem}>
                         <Image
-                          src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlZXxlbnwwfHwwfHw%3D&w=1000&q=80"
+                          src={hotel.attributes?.image_one}
                           height={250}
-                          width={250}
+                          width={305}
                           alt="Image of the hotel"
                         />
                         <span className={styles.featuredItem_name}>
@@ -255,9 +255,9 @@ export default function Home({ hotels }) {
                     <Link href={"/explore/" + hotel.id} key={hotel.id}>
                       <div className={styles.home_popularItem}>
                         <Image
-                          src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlZXxlbnwwfHwwfHw%3D&w=1000&q=80"
+                          src={hotel.attributes?.image_one}
                           height={250}
-                          width={250}
+                          width={305}
                           alt="Image of the hotel"
                         />
                         <span className={styles.popularItem_name}>

@@ -80,6 +80,10 @@
                 border-radius: 0.25rem;
                 column-gap: 1.5rem;
 
+                img {
+                    cursor: pointer;
+                }
+
                 .item_info {
                     width: 30%;
                     display: flex;

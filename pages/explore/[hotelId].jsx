@@ -8,7 +8,6 @@ import { Bed, Calendar, ChevronDown, MoodKid, User, MapPin, Wifi, ToolsKitchen, 
 import axios from "axios";
 import { DatePicker } from "@mantine/dates";
 import { Checkbox, Select } from "@mantine/core";
-import { SmokeFree } from "@mui/icons-material";
 
 export const getStaticPaths = async () => {
   let paths = [];
@@ -132,6 +131,7 @@ function Details({ hotel }) {
 
               <button className={styles.actions_filter_button}>Search</button>
             </div>
+            <div className={styles.actions_price}>Sum: <span>{hotel.attributes?.price} NOK</span></div>
           </div>
           <div className={styles.actions_right}>
             <div className={styles.actions_right_top}>
@@ -142,11 +142,11 @@ function Details({ hotel }) {
               <button>Reserve</button>
             </div>
             <div className={styles.actions_gallary}>
-              <Image src={"https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlZXxlbnwwfHwwfHw%3D&w=1000&q=80"} 
+              <Image src={hotel.attributes?.image_one} 
               alt={""} 
-              height={0} 
-              width={0}
-              layout="responsive"
+              height={600} 
+              width={895}
+              
               />
             </div>
           </div>
