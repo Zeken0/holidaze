@@ -17,15 +17,12 @@ import {
 } from "react-icons/io5";
 
 function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
 
   async function sendMessage() {
     const messageInfo = {
-      name: name,
-      email: email,
-      message: message,
+      name: values.name,
+      email: values.email,
+      message: values.message,
     };
 
     const add = await fetch("http://localhost:1337/api/messages", {
@@ -41,20 +38,20 @@ function Contact() {
     console.log(addResponse);
   }
 
-  try {
-    const formik = useFormik({
+  
+    const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik( {
+
       initialValues: {
         name: "",
         email: "",
         message: "",
       },
-      onSubmit: () => {},
       validationSchema: yup.object({
         name: yup
           .string()
           .trim()
-          .min(2, "Too Short!")
-          .max(20, "Too Long!")
+          .min(2, "Must be higher than 2 characters")
+          .max(20, "Must be shorter than 20 characters")
           .required("Name is required"),
         email: yup
           .string()
@@ -63,10 +60,16 @@ function Contact() {
         message: yup
           .string()
           .trim()
-          .min(10, "Too Short!")
+          .min(10, "Must be higher than 10 characters")
+          .max(500, "We dont need a novel")
           .required("Message is required"),
       }),
-    });
+
+      onSubmit: () => {
+        sendMessage()
+      },
+    })
+    
 
     return (
       <div className={styles.contact_container}>
@@ -122,7 +125,7 @@ function Contact() {
             </div>
           </div>
           <div className={styles.contact_main_message}>
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
                   Name
@@ -132,16 +135,13 @@ function Contact() {
                   name="name"
                   className="form-control"
                   placeholder="Ahmed Jibril"
-                  value={name}
-                  onChange={(e) => {
-                    formik.handleChange;
-                    setName(e.target.value);
-                  }}
-                  onBlur={formik.handleBlur}
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
-                {formik.errors.name && (
-                  <div className="text-danger">{formik.errors.name}</div>
-                )}
+                {touched.name && errors.name ?(
+                  <div className="text-danger">{errors.name}</div>
+                ): null}
               </div>
 
               <div className="mb-3">
@@ -153,16 +153,13 @@ function Contact() {
                   name="email"
                   className="form-control"
                   placeholder="Your@example.com"
-                  value={email}
-                  onChange={(e) => {
-                    formik.handleChange;
-                    setEmail(e.target.value);
-                  }}
-                  onBlur={formik.handleBlur}
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
-                {formik.errors.email && (
-                  <div className="text-danger">{formik.errors.email}</div>
-                )}
+                {errors.email && touched.email ?(
+                  <div className="text-danger">{errors.email}</div>
+                ): null}
               </div>
 
               <div className="mb-3">
@@ -173,23 +170,18 @@ function Contact() {
                   name="message"
                   className="form-control"
                   placeholder="Your message ..."
-                  value={message}
-                  onChange={(e) => {
-                    formik.handleChange;
-                    setMessage(e.target.value);
-                  }}
-                  onBlur={formik.handleBlur}
+                  value={values.message}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
-                {formik.errors.message && (
-                  <div className="text-danger">{formik.errors.message}</div>
-                )}
+                {errors.message &&  touched.message ?(
+                  <div className="text-danger">{errors.message}</div>
+                ): null}
               </div>
 
               <button
                 type="submit"
-                className="btn btn-primary"
-                onClick={() => sendMessage()}
-              >
+                className="btn btn-primary">
                 Send message
               </button>
             </form>
@@ -198,7 +190,6 @@ function Contact() {
         <Footer />
       </div>
     );
-  } catch (error) {}
 }
 
 export default Contact;

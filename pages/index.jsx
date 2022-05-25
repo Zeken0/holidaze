@@ -37,11 +37,27 @@ export async function getStaticProps() {
 }
 
 export default function Home({ hotels }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [question, setQuestion] = useState("");
 
-  const formik = useFormik({
+  async function askQuestion() {
+    const questionInfo = {
+      name: values.name,
+      email: values.email,
+      question: values.question,
+    };
+
+    const ask = await fetch("http://localhost:1337/api/enquiries", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: questionInfo }),
+    });
+
+    const askResponse = await ask.json();
+  }
+
+  const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik( {
     initialValues: {
       name: "",
       email: "",
@@ -68,26 +84,11 @@ export default function Home({ hotels }) {
       .string()
       .email("Must be a valid email"),
     }),
+
+    onSubmit: () => {
+      askQuestion()
+    }
   });
-
-  async function askQuestion() {
-    const questionInfo = {
-      name: name,
-      email: email,
-      question: question,
-    };
-
-    const ask = await fetch("http://localhost:1337/api/enquiries", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data: questionInfo }),
-    });
-
-    const askResponse = await ask.json();
-  }
 
   try {
     const router = useRouter();
@@ -216,21 +217,21 @@ export default function Home({ hotels }) {
                 QA sessions. Our newsletter is once a week, every Sunday.
               </p>
               <div className={styles.emailBanner_action}>
-                <form onSubmit={formik.handleSubmit}>
+                <form onSubmit={handleSubmit}>
                   <div className={styles.emailBanner_input}>
                     <input
                       type="email"
                       name="emailTwo"
                       placeholder="Your email"
-                      value={formik.values.emailTwo}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
+                      value={values.emailTwo}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                     />
-                    {formik.errors.emailTwo && (
+                    {errors.emailTwo && touched.emailTwo ?(
                       <div className="text-danger">
-                        {formik.errors.emailTwo}
+                        {errors.emailTwo}
                       </div>
-                    )}
+                    ): null}
                   </div>
                 </form>
                 <button type="submit" className={styles.actionButton}>
@@ -290,7 +291,7 @@ export default function Home({ hotels }) {
                 />
               </div>
               <div className={styles.enquiry_form}>
-                <form onSubmit={formik.handleSubmit}>
+                <form onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label">
                       Name
@@ -300,16 +301,13 @@ export default function Home({ hotels }) {
                       name="name"
                       className="form-control"
                       placeholder="Ahmed Jibril"
-                      value={name}
-                      onChange={(e) => {
-                        formik.handleChange;
-                        setName(e.target.value);
-                      }}
-                      onBlur={formik.handleBlur}
+                      value={values.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                     />
-                    {formik.errors.name && (
-                      <div className="text-danger">{formik.errors.name}</div>
-                    )}
+                    {errors.name && touched.name ?(
+                      <div className="text-danger">{errors.name}</div>
+                    ): null}
                   </div>
 
                   <div className="mb-3">
@@ -321,16 +319,13 @@ export default function Home({ hotels }) {
                       name="email"
                       className="form-control"
                       placeholder="Your@example.com"
-                      value={email}
-                      onChange={(e) => {
-                        formik.handleChange;
-                        setEmail(e.target.value);
-                      }}
-                      onBlur={formik.handleBlur}
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                     />
-                    {formik.errors.email && (
-                      <div className="text-danger">{formik.errors.email}</div>
-                    )}
+                    {errors.email && touched.email ? (
+                      <div className="text-danger">{errors.email}</div>
+                    ): null}
                   </div>
 
                   <div className="mb-3">
@@ -341,25 +336,20 @@ export default function Home({ hotels }) {
                       name="question"
                       className="form-control"
                       placeholder="Your question ..."
-                      value={question}
-                      onChange={(e) => {
-                        formik.handleChange;
-                        setQuestion(e.target.value);
-                      }}
-                      onBlur={formik.handleBlur}
+                      value={values.question}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                     />
-                    {formik.errors.question && (
+                    {errors.question && touched.question?(
                       <div className="text-danger">
-                        {formik.errors.question}
+                        {errors.question}
                       </div>
-                    )}
+                    ): null}
                   </div>
 
                   <button
                     type="submit"
-                    className={styles.enquiry_btn}
-                    onClick={() => askQuestion()}
-                  >
+                    className={styles.enquiry_btn}>
                     Send
                   </button>
                 </form>

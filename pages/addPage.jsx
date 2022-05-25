@@ -11,8 +11,6 @@ import * as Yup from "yup";
 
 
 function AddPage() {
- 
-
 
   const jwt = parseCookies().jwt
   // const router = useRouter();
@@ -76,7 +74,7 @@ function AddPage() {
       price: Yup
       .string()
       .trim()
-      
+
       .required('Price required'),
       
       location: Yup
@@ -109,6 +107,7 @@ function AddPage() {
     }),
     onSubmit: () => {
       addHotel()
+
     }
   })
 
