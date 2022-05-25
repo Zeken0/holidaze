@@ -5,10 +5,12 @@ import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import Image from "next/image";
 import { useFormik } from "formik";
-import * as yup from "yup";
+import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useRouter } from "next/router";
 import { setCookie } from "nookies";
+import { Notification } from '@mantine/core';
+import { Check, X } from 'tabler-icons-react';
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -45,27 +47,35 @@ function LoginPage() {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      <Notification icon={<Check size={18} />} color="teal" title="Teal notification">
+            This is teal notification with icon
+      </Notification>
     }
   }
 
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: yup.object({
-      password: yup
-        .string()
-        .trim()
-        .min(8, "Too Short!")
-        .max(9, "Too Long!")
-        .required("Password is required"),
-      email: yup
-        .string()
-        .email("Must be a valid email")
-        .required("Email is required"),
-    }),
-  });
+  
+    const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema: Yup.object({
+        email: Yup.string().required('Email required').email('Invalid email'),
+        password: Yup.string().max(9, 'Password must be shorter than 9 characters').min(7, 'Password must be higher than 7 characters').required('Password required'),
+      }),
+      onSubmit: ({email, password}) => {
+        alert(`Email: ${email}, Password: ${password}` )
+
+        handleLogin()
+      }
+    })
+  
+
+    const getValue = () => {
+      
+    }
+
   return (
     <div className={styles.login_container}>
       <Head>
@@ -86,7 +96,7 @@ function LoginPage() {
         <div className={styles.main_content}>
           <div className={styles.content_form}>
             <h1>Sign in</h1>
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
                   Email address
@@ -96,14 +106,18 @@ function LoginPage() {
                   name="email"
                   className="form-control"
                   placeholder="admin@admin.com"
-                  value={email}
-                  onChange={(e) => {
-                    formik.handleChange, setEmail(e.target.value);
+                  value={({email}) => {
+                    email.values.email
                   }}
+                  onChange={(e) => {
+                    handleChange
+                    setEmail(e.target.value)
+                  }}
+                  onBlur={handleBlur}
                 />
-                {formik.errors.email && (
-                  <div className="text-danger">{formik.errors.email}</div>
-                )}
+                {touched.email && errors.email ? (
+                  <div className="text-danger">{errors.email}</div>
+                ): null}
               </div>
 
               <div className="mb-3">
@@ -115,21 +129,21 @@ function LoginPage() {
                   name="password"
                   className="form-control"
                   placeholder="Pass1234"
-                  value={password}
+                  value={values.password}
                   onChange={(e) => {
-                    formik.handleChange, setPassword(e.target.value);
+                    handleChange
+                    setPassword(e.target.value)
                   }}
+                  onBlur={handleBlur}
                 />
-                {formik.errors.password && (
-                  <div className="text-danger">{formik.errors.password}</div>
-                )}
+                {touched.password && errors.password ? (
+                  <div className="text-danger">{errors.password}</div>
+                ): null}
               </div>
 
               <button
                 type="submit"
-                className={styles.login_button}
-                onClick={() => handleLogin()}
-              >
+                className={styles.login_button}>
                 Login
               </button>
             </form>
@@ -140,5 +154,4 @@ function LoginPage() {
     </div>
   );
 }
-
 export default LoginPage;
