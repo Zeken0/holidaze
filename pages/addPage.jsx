@@ -6,19 +6,12 @@ import styles from "../styles/Home.module.scss";
 import Image from "next/image";
 import {parseCookies} from 'nookies'
 import { useRouter } from "next/router";
-import { useForm } from 'react-hook-form';
-import { Notification } from '@mantine/core';
-import { Check, X } from 'tabler-icons-react';
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
 
 function AddPage() {
-  const [name, setName] = useState("");
-  const [location, setLocation] = useState("");
-  const [price, setPrice] = useState("");
-  const [about, setAbout] = useState("");
-  const [imageOne, setImageOne] = useState("");
-  const [imageTwo, setImageTwo] = useState("");
-  const [imageThree, setImageThree] = useState("");
-  const [imageFour, setImageFour] = useState("");
+ 
 
 
   const jwt = parseCookies().jwt
@@ -31,14 +24,14 @@ function AddPage() {
   async function addHotel() {
     
     const hotelInfo = {
-      name: name,
-      location: location,
-      price: price,
-      about: about,
-      image_one: imageOne,
-      image_two: imageTwo,
-      image_three: imageThree,
-      image_four: imageFour,
+      name: values.name,
+      location: values.location,
+      price: values.price,
+      about: values.about,
+      image_one: values.image_one,
+      image_two: values.image_two,
+      image_three: values.image_three,
+      image_four: values.image_four,
     };
 
     const add = await fetch("http://localhost:1337/api/hotels", {
@@ -55,12 +48,69 @@ function AddPage() {
     console.log(addResponse);
   }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik({
+    initialValues: {
+      name: "",
+      about: "",
+      price: "",
+      location: "",
+      image_one: "",
+      image_two: "",
+      image_three: "",
+      image_four: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup
+      .string()
+      .trim()
+      .required('Name required')
+      .min(2, "Name must be higher than 1 character!")
+      .max(20, "Too Long!"),
 
+      about: Yup
+      .string()
+      .trim()
+      .min(3, 'Must be higher than 3 characters')
+      .required('About required'),
+
+      price: Yup
+      .string()
+      .trim()
+      
+      .required('Price required'),
+      
+      location: Yup
+      .string()
+      .trim()
+      .min(10, 'Must be higher than 10 characters')
+      .max(30, 'Must be less than 30 characters')
+      .required('Location required'),
+
+      image_one: Yup
+      .string()
+      .trim()
+      .required('url required')
+      .url('Must be an url'),
+
+      image_two: Yup
+      .string()
+      .trim()
+      .url('Must be a url'),
+
+      image_three: Yup
+      .string()
+      .trim()
+      .url('Must be a url'),
+
+      image_four: Yup
+      .string()
+      .trim()
+      .url('Must be a url'),
+    }),
+    onSubmit: () => {
+      addHotel()
+    }
+  })
 
   return (
     <div className={styles.add_container}>
@@ -76,10 +126,7 @@ function AddPage() {
       <main className={styles.add_main}>
         <div className={styles.add_form_section}>
           <h1>Add establishment</h1>
-          <form className={styles.add_form} onSubmit={(e) => {
-            addHotel()
-            e.preventDefault()
-            }}>
+          <form className={styles.add_form} onSubmit={handleSubmit}>
             <div className={styles.form_control}>
               <label htmlFor="name" className={styles.form_label}>
                 Name
@@ -88,11 +135,14 @@ function AddPage() {
                 type="text"
                 name="name"
                 placeholder="Hotel name"
-
-                value={name}
-                onChange={(e) => {setName(e.target.value);}}
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className={styles.form_input}
               />
+              {touched.name && errors.name ? (
+                  <div className="text-danger">{errors.name}</div>
+                ): null}
             </div>
             <div className={styles.form_control}>
               <label htmlFor="location" className={styles.form_label}>
@@ -102,11 +152,14 @@ function AddPage() {
                 type="text"
                 name="location"
                 placeholder="Somewhere land 26a"
-                
-                value={location}
-                onChange={(e) => {setLocation(e.target.value);}}
+                value={values.location}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className={styles.form_input}
               />
+              {touched.location && errors.location ? (
+                  <div className="text-danger">{errors.location}</div>
+                ): null}
             </div>
               <div className={styles.form_control}>
                 <label htmlFor="about" className={styles.form_label}>
@@ -116,10 +169,14 @@ function AddPage() {
                   type="text"
                   name="about"
                   placeholder="Write something"
-                  value={about}
-                  onChange={(e) => {setAbout(e.target.value);}}
+                  value={values.about}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   className={styles.form_input_about}
                 />
+                {touched.about && errors.about ? (
+                  <div className="text-danger">{errors.about}</div>
+                ): null}
               </div>
             <div className={styles.form_control}>
               <label htmlFor="price" className={styles.form_label}>
@@ -129,10 +186,14 @@ function AddPage() {
                 type="number"
                 name="price"
                 placeholder="299,99 kr"
-                value={price}
-                onChange={(e) => {setPrice(e.target.value);}}
+                value={values.price}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className={styles.form_input_price}
               />
+              {touched.price && errors.price ? (
+                  <div className="text-danger">{errors.price}</div>
+                ): null}
             </div>
             <div className={styles.form_control}>
               <label htmlFor="image_one" className={styles.form_label}>
@@ -142,10 +203,14 @@ function AddPage() {
                 type="text"
                 name="image_one"
                 placeholder="insert url here"
-                value={imageOne}
-                onChange={(e) => {setImageOne(e.target.value);}}
+                value={values.image_one}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className={styles.form_input}
               />
+              {touched.image_one && errors.image_one ? (
+                  <div className="text-danger">{errors.image_one}</div>
+                ): null}
             </div>
             <div className={styles.form_control}>
               <label htmlFor="image_two" className={styles.form_label}>
@@ -155,10 +220,14 @@ function AddPage() {
                 type="text"
                 name="image_two"
                 placeholder="insert url here"
-                value={imageTwo}
-                onChange={(e) => {setImageTwo(e.target.value);}}
+                value={values.image_two}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className={styles.form_input}
               />
+              {touched.image_two && errors.image_two ? (
+                  <div className="text-danger">{errors.image_two}</div>
+                ): null}
             </div>
             <div className={styles.form_control}>
               <label htmlFor="image_three" className={styles.form_label}>
@@ -168,10 +237,14 @@ function AddPage() {
                 type="text"
                 name="image_three"
                 placeholder="insert url here"
-                value={imageThree}
-                onChange={(e) => {setImageThree(e.target.value);}}
+                value={values.image_three}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className={styles.form_input}
               />
+              {touched.image_three && errors.image_three ? (
+                  <div className="text-danger">{errors.image_three}</div>
+                ): null}
             </div>
             <div className={styles.form_control}>
               <label htmlFor="image_four" className={styles.form_label}>
@@ -181,10 +254,14 @@ function AddPage() {
                 type="text"
                 name="image_four"
                 placeholder="insert url here"
-                value={imageFour}
-                onChange={(e) => {setImageFour(e.target.value);}}
+                value={values.image_four}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className={styles.form_input}
               />
+              {touched.image_four && errors.image_four ? (
+                  <div className="text-danger">{errors.image_four}</div>
+                ): null}
             </div>
             <button type="submit" className={styles.form_button}
               >Submit

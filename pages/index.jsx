@@ -64,7 +64,9 @@ export default function Home({ hotels }) {
         .trim()
         .min(10, "Too Short!")
         .required("Question is required"),
-      emailTwo: yup.string().email("Must be a valid email"),
+      emailTwo: yup
+      .string()
+      .email("Must be a valid email"),
     }),
   });
 

@@ -10,19 +10,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useRouter } from "next/router";
 import { setCookie } from "nookies";
 import { Notification } from '@mantine/core';
-import { Check, X } from 'tabler-icons-react';
+import { Check } from 'tabler-icons-react';
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const router = useRouter();
 
   async function handleLogin() {
+
     try {
       const loginInfo = {
-        identifier: email,
-        password: password,
+        identifier: values.email,
+        password: values.password,
       };
 
       const login = await fetch("http://localhost:1337/api/auth/local", {
@@ -44,37 +43,34 @@ function LoginPage() {
 
       if (login.status === 200) {
         router.push("/admin");
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      <Notification icon={<Check size={18} />} color="teal" title="Teal notification">
-            This is teal notification with icon
-      </Notification>
+      } 
+    } catch (e) {
+      console.log(e);
     }
   }
 
-  
-    const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik({
-      initialValues: {
-        email: "",
-        password: "",
-      },
-      validationSchema: Yup.object({
-        email: Yup.string().required('Email required').email('Invalid email'),
-        password: Yup.string().max(9, 'Password must be shorter than 9 characters').min(7, 'Password must be higher than 7 characters').required('Password required'),
-      }),
-      onSubmit: ({email, password}) => {
-        alert(`Email: ${email}, Password: ${password}` )
+  const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup
+      .string()
+      .required('Email required')
+      .email('Invalid email'),
 
-        handleLogin()
-      }
-    })
-  
-
-    const getValue = () => {
-      
+      password: Yup
+      .string()
+      .max(9, 'Password must be shorter than 9 characters')
+      .min(3, 'Password must be higher than 3 characters')
+      .required('Password required'),
+    }),
+    onSubmit: () => {
+      handleLogin()
     }
+  })
+  
 
   return (
     <div className={styles.login_container}>
@@ -106,13 +102,8 @@ function LoginPage() {
                   name="email"
                   className="form-control"
                   placeholder="admin@admin.com"
-                  value={({email}) => {
-                    email.values.email
-                  }}
-                  onChange={(e) => {
-                    handleChange
-                    setEmail(e.target.value)
-                  }}
+                  value={values.email}
+                  onChange={handleChange}
                   onBlur={handleBlur}
                 />
                 {touched.email && errors.email ? (
@@ -130,10 +121,7 @@ function LoginPage() {
                   className="form-control"
                   placeholder="Pass1234"
                   value={values.password}
-                  onChange={(e) => {
-                    handleChange
-                    setPassword(e.target.value)
-                  }}
+                  onChange={handleChange}
                   onBlur={handleBlur}
                 />
                 {touched.password && errors.password ? (
