@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,8 +10,8 @@ import * as yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Notification, Select } from "@mantine/core";
-import { X, Search, ChevronDown } from "tabler-icons-react";
+import { Select } from "@mantine/core";
+import { Search, ChevronDown} from "tabler-icons-react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -57,7 +57,7 @@ export default function Home({ hotels }) {
     const askResponse = await ask.json();
   }
 
-  const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik( {
+  const {handleSubmit, handleChange, values, touched, errors, handleBlur, resetForm} = useFormik( {
     initialValues: {
       name: "",
       email: "",
@@ -87,6 +87,8 @@ export default function Home({ hotels }) {
 
     onSubmit: () => {
       askQuestion()
+      resetForm()
+      alert('youre question has been sendt! we will get back to you in 1-2 days')
     }
   });
 
@@ -361,9 +363,6 @@ export default function Home({ hotels }) {
       </div>
     );
   } catch {
-    <Notification icon={<X size={18} />} color="red">
-      An error has occurd!
-    </Notification>;
-  } finally {
-  }
+    
+  } 
 }

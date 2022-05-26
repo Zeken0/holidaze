@@ -14,6 +14,30 @@ import { Check } from 'tabler-icons-react';
 
 function LoginPage() {
 
+  const {handleSubmit, handleChange, values, touched, errors, handleBlur , resetForm} = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup
+      .string()
+      .required('Email required')
+      .email('Invalid email'),
+
+      password: Yup
+      .string()
+      .max(9, 'Password must be shorter than 9 characters')
+      .min(3, 'Password must be higher than 3 characters')
+      .required('Password required'),
+    }),
+    onSubmit: () => {
+      handleLogin()
+      resetForm()
+      alert('Login succsessful, rederecting to the admin page')
+    }
+  })
+
   const router = useRouter();
 
   async function handleLogin() {
@@ -38,7 +62,6 @@ function LoginPage() {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
       });
-      console.log(loginResponse);
 
 
       if (login.status === 200) {
@@ -48,29 +71,6 @@ function LoginPage() {
       console.log(e);
     }
   }
-
-  const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: Yup.object({
-      email: Yup
-      .string()
-      .required('Email required')
-      .email('Invalid email'),
-
-      password: Yup
-      .string()
-      .max(9, 'Password must be shorter than 9 characters')
-      .min(3, 'Password must be higher than 3 characters')
-      .required('Password required'),
-    }),
-    onSubmit: () => {
-      handleLogin()
-    }
-  })
-  
 
   return (
     <div className={styles.login_container}>

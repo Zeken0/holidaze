@@ -163,7 +163,6 @@ function Explore({ hotels }) {
                       src={hotel.attributes?.image_one}
                       height={352}
                       width={450}
-                    
                       alt="Image of a hotel"
                     />
                   </Link>
@@ -208,5 +207,4 @@ function Explore({ hotels }) {
     </div>
   );
 }
-
 export default Explore;

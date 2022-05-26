@@ -46,7 +46,7 @@ function AddPage() {
     console.log(addResponse);
   }
 
-  const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik({
+  const {handleSubmit, handleChange, values, touched, errors, handleBlur, resetForm} = useFormik({
     initialValues: {
       name: "",
       about: "",
@@ -62,8 +62,8 @@ function AddPage() {
       .string()
       .trim()
       .required('Name required')
-      .min(2, "Name must be higher than 1 character!")
-      .max(20, "Too Long!"),
+      .min(2, "Must be higher than 1 character")
+      .max(20, "Must be less than 20 character"),
 
       about: Yup
       .string()
@@ -107,7 +107,8 @@ function AddPage() {
     }),
     onSubmit: () => {
       addHotel()
-
+      resetForm()
+      alert('Hotel has been added!')
     }
   })
 

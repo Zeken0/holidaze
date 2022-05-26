@@ -39,7 +39,7 @@ function Contact() {
   }
 
   
-    const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik( {
+    const {handleSubmit, handleChange, values, touched, errors, handleBlur, resetForm} = useFormik( {
 
       initialValues: {
         name: "",
@@ -67,6 +67,8 @@ function Contact() {
 
       onSubmit: () => {
         sendMessage()
+        resetForm()
+        alert('youre message has been sendt! we will get back to you in 1-2 days')
       },
     })
     
