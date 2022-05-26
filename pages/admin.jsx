@@ -6,7 +6,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import { useRouter } from "next/router";
-import { Tabs, Spoiler} from "@mantine/core";
+import { Tabs} from "@mantine/core";
 import { MessageCircle } from "tabler-icons-react";
 import { parseCookies } from "nookies";
 
@@ -33,14 +33,13 @@ export default function Admin() {
   };
 
   useEffect(() => {
-    const jwt = parseCookies().jwt;
 
-    if (
-      !jwt ===
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUyOTYxNDA1LCJleHAiOjE2NTU1NTM0MDV9.ms1E8HBcbsXVVm6G9CvsuW3F1rFPl_GWNV4fgT2otZU"
-    ) {
-      router.push("/loginPage");
-    }
+    // const jwt = parseCookies().jwt;
+
+    // if (
+    //   !jwt === "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUzNTUzNzgwLCJleHAiOjE2NTYxNDU3ODB9.FJh9UnjDJ4-VWaNuK93rJcU2xR70osRgJfGhZ0htPtk") {
+    //   router.push("/loginPage");
+    // }
     fetchData();
   }, []);
 

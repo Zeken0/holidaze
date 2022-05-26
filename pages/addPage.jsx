@@ -12,7 +12,7 @@ import * as Yup from "yup";
 
 function AddPage() {
 
-  const jwt = parseCookies().jwt
+  // const jwt = parseCookies().jwt
   // const router = useRouter();
 
   // if (jwt === "null" || "undefined") {
@@ -74,7 +74,6 @@ function AddPage() {
       price: Yup
       .string()
       .trim()
-
       .required('Price required'),
       
       location: Yup
