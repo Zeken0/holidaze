@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
+  swcMinify: false,
   images: {
     domains: [
       "dynamic-media-cdn.tripadvisor.com",
