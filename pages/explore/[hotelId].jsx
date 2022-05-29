@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import styles from "../../styles/Home.module.scss";
-import { Bed, Calendar, ChevronDown, MoodKid, User, MapPin, Wifi, ToolsKitchen, Briefcase, Parking, Windmill, ShieldLock, Snowflake, DeviceTv, SmokingNo, Coffee } from "tabler-icons-react";
+import { Bed, Calendar, ChevronDown, MoodKid, User, MapPin, Wifi, Briefcase, Parking, Windmill, ShieldLock, Snowflake, DeviceTv, SmokingNo, Coffee } from "tabler-icons-react";
 import axios from "axios";
 import { DatePicker } from "@mantine/dates";
 import { Checkbox, Select } from "@mantine/core";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 export const getStaticPaths = async () => {
   let paths = [];
@@ -49,39 +46,7 @@ export const getStaticProps = async (context) => {
   };
 };
 
-const settings = {
-  dots: true,
-  infinite: false,
-  speed: 300,
-  slidesToShow: 4,
-  slidesToScroll: 2,
-  className: "slides",
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        infinite: true,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
-};
+
 
 function Details({ hotel }) {
   const data = Array(51)
@@ -180,7 +145,7 @@ function Details({ hotel }) {
             </div>
             <div className={styles.actions_gallary}>
               <Image src={hotel.attributes?.image_one} 
-              alt={""} 
+              alt={"A image of a hotel"} 
               height={600} 
               width={895}
               />
@@ -231,5 +196,4 @@ function Details({ hotel }) {
     </div>
   );
 }
-
 export default Details;

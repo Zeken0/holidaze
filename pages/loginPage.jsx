@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -9,8 +9,7 @@ import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useRouter } from "next/router";
 import { setCookie } from "nookies";
-import { Notification } from '@mantine/core';
-import { Check } from 'tabler-icons-react';
+
 
 function LoginPage() {
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -80,7 +80,7 @@ function Contact() {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta
             name="description"
-            content="This is the Sign in page to the hotel booking site Holidaze"
+            content="This is the contact page to the hotel booking site Holidaze"
           />
         </Head>
         <NavBar />
@@ -193,5 +193,4 @@ function Contact() {
       </div>
     );
 }
-
 export default Contact;

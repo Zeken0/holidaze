@@ -55,6 +55,7 @@ export default function Home({ hotels }) {
     });
 
     const askResponse = await ask.json();
+    console.log(askResponse);
   }
 
   const {handleSubmit, handleChange, values, touched, errors, handleBlur, resetForm} = useFormik( {
@@ -92,7 +93,6 @@ export default function Home({ hotels }) {
     }
   });
 
-  try {
     const router = useRouter();
 
     const handleOnClick = (hotelName) => {
@@ -362,7 +362,4 @@ export default function Home({ hotels }) {
         <Footer />
       </div>
     );
-  } catch {
-    
-  } 
-}
+  }
