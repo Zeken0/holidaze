@@ -92,6 +92,7 @@ function LoginPage() {
           <div className={styles.content_form}>
             <h1>Sign in</h1>
             <form onSubmit={handleSubmit}>
+              
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
                   Email address

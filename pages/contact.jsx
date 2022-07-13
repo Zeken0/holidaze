@@ -128,6 +128,7 @@ function Contact() {
           </div>
           <div className={styles.contact_main_message}>
             <form onSubmit={handleSubmit}>
+              
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
                   Name
