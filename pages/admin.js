@@ -6,7 +6,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import { useRouter } from "next/router";
-import { Tabs} from "@mantine/core";
+import { Tabs } from "@mantine/core";
 import { MessageCircle } from "tabler-icons-react";
 import { parseCookies } from "nookies";
 
@@ -33,7 +33,6 @@ export default function Admin() {
   };
 
   useEffect(() => {
-
     // const jwt = parseCookies().jwt;
 
     // if (
@@ -48,7 +47,10 @@ export default function Admin() {
       <Head>
         <title>Admin | Holidaze</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="This is the admin page to the hotel booking site Holidaze" />
+        <meta
+          name="description"
+          content="This is the admin page to the hotel booking site Holidaze"
+        />
       </Head>
       <NavBar />
       <main className={styles.admin_main}>
@@ -61,32 +63,31 @@ export default function Admin() {
         <div className={styles.admin_tabs}>
           <Tabs tabPadding="xl" color="orange" position="apart">
             <Tabs.Tab label="All">
-            <div className={styles.admin_users_container}>
+              <div className={styles.admin_users_container}>
                 {enquiries.map((enquiry) => {
-                  return <div className={styles.admin_user} key={enquiry.id}>
+                  return (
+                    <div className={styles.admin_user} key={enquiry.id}>
+                      <div className={styles.user_name}>
+                        <h3>Name:</h3>
+                        <span>{enquiry.attributes.name}</span>
+                      </div>
 
-                        <div className={styles.user_name}>
-                          <h3>Name:</h3>
-                          <span>{enquiry.attributes.name}</span>
-                        </div>
+                      <div className={styles.user_email}>
+                        <h3>Email:</h3>
+                        <span>{enquiry.attributes.email}</span>
+                      </div>
 
-                        <div className={styles.user_email}>
-                          <h3>Email:</h3>
-                          <span>{enquiry.attributes.email}</span>
-                        </div>
-
-                        <div className={styles.user_question}>
-                          <h3>Question:</h3>
-                          <p>
-                            {enquiry.attributes.question}
-                          </p>
-                        </div>
-                  </div>;
+                      <div className={styles.user_question}>
+                        <h3>Question:</h3>
+                        <p>{enquiry.attributes.question}</p>
+                      </div>
+                    </div>
+                  );
                 })}
 
-              {messages.map((message) => {
-                return <div className={styles.admin_user} key={message.id}>
-
+                {messages.map((message) => {
+                  return (
+                    <div className={styles.admin_user} key={message.id}>
                       <div className={styles.user_name}>
                         <h3>Name:</h3>
                         <span>{message.attributes.name}</span>
@@ -99,47 +100,44 @@ export default function Admin() {
 
                       <div className={styles.user_message}>
                         <h3>Message:</h3>
-                        <p>
-                          {message.attributes.message}
-                        </p>
+                        <p>{message.attributes.message}</p>
                       </div>
-                </div>;
-              })}
+                    </div>
+                  );
+                })}
               </div>
             </Tabs.Tab>
 
             <Tabs.Tab label="Enquiries" icon={<MessageCircle size={17} />}>
               <div className={styles.admin_users_container}>
                 {enquiries.map((enquiry) => {
-                  return <div className={styles.admin_user} key={enquiry.id}>
+                  return (
+                    <div className={styles.admin_user} key={enquiry.id}>
+                      <div className={styles.user_name}>
+                        <h3>Name:</h3>
+                        <span>{enquiry.attributes.name}</span>
+                      </div>
 
-                        <div className={styles.user_name}>
-                          <h3>Name:</h3>
-                          <span>{enquiry.attributes.name}</span>
-                        </div>
+                      <div className={styles.user_email}>
+                        <h3>Email:</h3>
+                        <span>{enquiry.attributes.email}</span>
+                      </div>
 
-                        <div className={styles.user_email}>
-                          <h3>Email:</h3>
-                          <span>{enquiry.attributes.email}</span>
-                        </div>
-
-                        <div className={styles.user_question}>
-                          <h3>Question:</h3>
-                          <p>
-                            {enquiry.attributes.question}
-                          </p>
-                        </div>
-                  </div>;
+                      <div className={styles.user_question}>
+                        <h3>Question:</h3>
+                        <p>{enquiry.attributes.question}</p>
+                      </div>
+                    </div>
+                  );
                 })}
               </div>
             </Tabs.Tab>
 
             <Tabs.Tab label="Messages" icon={<MessageCircle size={17} />}>
               <div className={styles.admin_users_container}>
-
-              {messages.map((message) => {
-                return <div className={styles.admin_user} key={message.id}>
-
+                {messages.map((message) => {
+                  return (
+                    <div className={styles.admin_user} key={message.id}>
                       <div className={styles.user_name}>
                         <h3>Name:</h3>
                         <span>{message.attributes.name}</span>
@@ -152,12 +150,11 @@ export default function Admin() {
 
                       <div className={styles.user_message}>
                         <h3>Message:</h3>
-                        <p>
-                          {message.attributes.message}
-                        </p>
+                        <p>{message.attributes.message}</p>
                       </div>
-                </div>;
-              })}
+                    </div>
+                  );
+                })}
               </div>
             </Tabs.Tab>
           </Tabs>
